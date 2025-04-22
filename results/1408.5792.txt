@@ -1,0 +1,1238 @@
+arXiv: 1408.5792v3 [astro-ph.CO] 13 Jan 2015
+
+PREPARED FOR SUBMISSION TO JCAP
+
+On the significance of power
+asymmetries in Planck CMB data
+at all scales!
+
+Miguel Quartin® and Alessio Notari?
+
+“Instituto de Fisica, Universidade Federal do Rio de Janeiro, 21941-972, Rio de Janeiro, RJ,
+Brazil
+
+'Departament de Fisica Fondamental i Institut de Ciéncies del Cosmos, Universitat de
+Barcelona, Marti i Franqués 1, E-08028 Barcelona, Spain
+
+“Dip. di Fisica, Universita di Ferrara and INFN Sez. di Ferrara, Via Saragat 1, I-44100
+Ferrara, Italy
+
+Abstract. We perform an analysis of the CMB temperature data taken by the Planck
+satellite investigating if there is any significant deviation from cosmological isotropy. We
+look for differences in the spectrum between two opposite hemispheres and also for dipolar
+modulations. We propose a new way to avoid biases due to partial-sky coverage by producing
+a mask symmetrized in antipodal directions, in addition to the standard smoothing procedure.
+We also properly take into account both Doppler and aberration effects due to our peculiar
+velocity and the anisotropy of the noise, since these effects induce a significant hemispherical
+asymmetry. We are thus able to probe scales all the way to £ = 2000. After such treatment we
+find no evidence for significant hemispherical anomalies along any of the analyzed directions
+i.e. deviations are less than 1.50 when summing over all scales). Although among the larger
+scales there are sometimes higher discrepancies, these are always less than 30. We also find
+results on a dipolar modulation of the power spectrum. Along the hemispheres aligned with
+he most asymmetric direction for 2 < @ < 2000 we find a 3.30 discrepancy when comparing
+o simulations. However, if we do not restrict ourselves to Planck’s maximal asymmetry axis,
+which can only be known a posteriori, and compare Planck data with the modulation of
+simulations along their respective maximal asymmetry directions, the discrepancy goes down
+o less than lo (with, again, almost 30 discrepancies in some low-£ modes). We thus conclude
+hat no significant power asymmetries seem to be present in the full data set. Interestingly,
+without proper removal of Doppler and aberration effects one would find spurious anomalies
+at high @, between 30 and 50. Even when considering only ¢ < 600 we find that the boost is
+non-negligible and alleviates the discrepancy by roughly half-o.
+
+Keywords: CMB theory, CMB aberration, CMB anomalies
+
+‘Based on observations obtained with Planck (http: //www.esa.int/Planck), an ESA science mission with
+instruments and contributions directly funded by ESA Member States, NASA, and Canada.
+
+
+Contents
+
+1 Introduction 1
+2 Data and symmetrized mask 3
+3 Dealing with Doppler, aberration and anisotropy in the noise 4
+4 Results: significance of Hemispherical Asymmetry 6
+5 Results: Dipolar modulation — a posteriori direction 9
+6 Results: Dipolar modulation — unbiased direction 14
+7 Conclusions 16
+A Comparison of original and symmetrized masks 17
+B Constructing a symmetrized masks 18
+C Details of our HEALPix simulations 19
+
+1 Introduction
+
+The Planck satellite [1] has provided the most accurate determination of the Cosmic Mi-
+crowave Background amongst the full-sky experiments. For this reason it can be used not
+only for parameter extraction in a given cosmological model but also as a powerful test of
+he overall global isotropy of the models. Several papers, already starting a decade ago with
+he first public data from WMAP [2], have claimed departures from the global isotropy. For
+he particular case of power asymmetries, such as differences in power in two antipodal hemi-
+spheres or of a dipolar modulation of the amplitude of the angular power spectrum, these
+claims are often at about the 3c level! (see, e.g. [3-12]), especially focusing at large angular
+scales, corresponding to multipoles @ < 60 or in some cases € < 600. Since Planck is able to
+ook at very small angular scales, corresponding to multipoles up to ~ 2000, it is important
+o assess the existence of such anomalies on the full range of scales.
+
+In particular [3] found that in the WMAP first year data on the range of multipoles
+£ = 2-40 the power spectrum is higher in one hemisphere than in the opposite one, at 3.00
+confidence level, compared with simulations. Later [6] considered the issue of hemispherical
+power asymmetry in the three-year WMAP data, finding that a temperature field modulated
+by a dipole gives a substantially better fit to the observations than the purely isotropic model:
+he best-fit modulation dipole axis points toward (1,b) = (225°,—27°), with an amplitude
+of 0.114 and a significance level of 2.60. Then [8, 9] found that the hemispherical power
+asymmetry extends to much smaller scales: for the multipole range ¢ = 2 — 600, significantly
+more power was found in the hemisphere centered at (J, b) = (226°, 17°) than in the opposite
+1zemisphere. A model with an asymmetric distribution of power for = 2 — 600 was found to
+
+‘Throughout this paper we make use of o-levels instead of percentage values. Le., 68.3% = 1a, 95.4% = 2c,
+etc.; see (4.8) below.
+
+
+be preferred over the isotropic model at the 2.90 significance level. Interestingly however the
+best fit amplitude of the asymmetry was found to be decreasing at high @.
+
+Strikingly in the recent Planck results it was then suggested in [11] (pre-print v1) that the
+power asymmetry persists in an even larger multipole range, = 2 — 1500, in the direction
+1,b) = (224°,0°). The authors calculated the localised power in discs and introduced a
+measure for the asymmetry which is based on the clustering of the directions of maximal
+asymmetry in different multipole bins, finding a significant asymmetry at 2.70. However this
+claim was questioned in [13] where we have shown in simulations that the analysis has to be
+performed in the rest frame of the CMB, since Doppler and aberration effects are giving an
+important contribution to hemispherical asymmetries (see also [14]). Such claim has been
+questioned also by [15] which performs an analysis similar to the one of the present paper,
+although with some important differences that we will stress. Finally in [11] (pre-print v3,
+published) the Planck collaboration has reduced the claims of the presence of significant
+anomalies to the range € < 600. Given the different treatments in such papers and given
+he importance of the issue whether the Universe is violating or not the global isotropy,
+it is relevant to assess in an accurate way the presence of anomalies using the method of
+estimating the power spectrum on opposite hemispheres, extending our previous analysis [13]
+from simulations to the real data.
+
+In this paper we build on the methods developed in [13] to analyze real Planck data.
+We focus on the estimation of the power spectrum on opposite hemispheres, with respect
+© some special directions. In particular we analyze three different directions: the galactic
+North-South direction, the direction of the CMB dipole and the direction (1, b) = (225°, 1°),
+which has been claimed by [11] to be the direction of maximal asymmetry, albeit obtained
+with different methods. Curiously, this last direction is also not far from the one that was
+recently found to maximize a different kind of hemispherical asymmetry, relating not the
+amplitude of power but to a variance dipole [16].
+
+Several ingredients are important in order to perform an unbiased analysis of the real
+Planck data of the CMB sky in addition to the boost factor analyzed in simulations in our
+previous work [13]. First we need to deal with the fact that a mask is applied to the data,
+which covers the foreground signals (galaxy and point sources). This is usually taken into
+account of by using a mode coupling matrix Myy [17] (the so-called MASTER approach)
+which multiplies the power spectrum of the masked sky (Cy, the pseudo power spectrum)
+and reconstructs the best estimator for the original full-sky spectrum (C?), and this is done
+separately for the northern and southern hemispheres. This procedure has the advantage of
+reducing correlations present in the pseudo power spectrum.” However such procedure con-
+tains a number of approximations and in order to have a cleaner procedure which is unbiased
+by construction we introduce a new and more conservative mask, obtained by symmetrizing
+the original Planck one by removing all pixels which are antipodal to the ones which are
+originally ignored. In this way we lose some extra fraction of the data, but we have a more
+reliable and clean procedure to estimate differences in opposite hemispheres, since by con-
+struction the new mask cannot introduce any asymmetry. We also take care of the fact that
+when cutting the sky into hemispheres this would introduce a sharp edge, by introducing a
+smoothing (or apodization) of the mask on a 10’ angular scale. After applying such mask we
+analyze the Ce and apply the matrix My [17] which performs the estimate of the full C;’s.
+
+Such a procedure has been partially applied by [15] by applying a correction for these inter-scale correla-
+tions.
+
+
+Crucially then we take into account of the Doppler and aberration effects, using a mod-
+ified version of the HEALPix® package [18] that allows inclusion of these two effects. We
+assume that our velocity v compared with the CMB rest frame is given by the CMB dipole
+with
+
+B =|v|/e = (1.231 + 0.003) x 1073 (1.1)
+
+in the galactic coordinates
+(1, b) = (264°, 48°). (1.2)
+
+Such value and direction is obtained by combining the measured temperatures of the WMAP
+dipole [19] with the COBE monopole [20, 21] and it has been also confirmed recently by the
+new method of estimating non diagonal correlations in the CMB [22, 23]. Both effects distort
+the CMB at all scales and induce a very significant north-south asymmetry [14, 22, 24]. This
+was partially taken into account in [15], but they only subtracted Doppler without taking
+into account of aberration, which actually is the dominant effect at large @.
+Another very important ingredient that we include in our analysis is the experimental
+noise, which is not symmetric (see [1]) and which is important at very small angular scales
+multipoles > 1300). In this way we are able to perform an analysis which extends to very
+righ @.
+It is important to note that for very large scale anomalies (¢ < 10), other non-primordial
+effects such as the kinetic Doppler quadrupole, the kinetic Sunyaev-Zel’dovich effect and the
+integrated Sachs-Wolfe effect might be relevant [25-28]. Here, however, we do not focus on
+he very large scales, and therefore neglect these effects.
+
+The paper is organized as follows. In section 2 we discuss the data that we use and the
+reatment that we apply to the masks. In section 3 we discuss how to take into account of
+Doppler and aberration and of the anisotropic noise. In section 4 we discuss the significance of
+1emispherical asymmetries and in sections 5-6 we discuss how to put a constraint on a specific
+parametrization of the north-south asymmetries, usually called dipolar modulation. We draw
+our conclusions in 7. More specific details are listed in the appendices: in appendix A we
+discuss the changes introduced by our symmetrized mask, in appendix B we show how to
+build such a mask and finally in appendix C the details of our HEALPix simulations.
+
+2 Data and symmetrized mask
+
+We analyze both data and noise presented by the first release from the Planck collaboration in
+the SMICA map which is a CMB temperature map obtained as a multipole-dependent linear
+combination of several frequency maps [29]. This combined map has a power spectrum which
+is cosmic variance limited up to @ ~ 1700, after which the noise quickly becomes dominant.
+n order to minimize possible north-south or dipolar biases induced by the masking
+procedure, we suggest a new technique which relies on the following symmetrization of the
+mask. Starting from a specific mask, the symmetrized mask is obtained by applying a parity
+transformation P :%— —/ on a given pixel at a direction specified by a unit vector *% and
+then by multiplying by the original mask. In this way, if a pixel is absent from the original
+mask, the corresponding antipodal pixel will also be absent from the new mask. This is a
+conceptually clean way of guaranteeing that there will be no parity asymmetry in the final
+analysis induced by the mask. In appendix B we discuss how such a mask can be produced
+in pixel-space with HEALPix.
+
+Shttp://healpix.sourceforge.net/
+
+
+We analyze such map with the HEALPix package, with Neiae = 2048 and max = 4000
+(further details can be found on Appendix C). We use the U73 mask, which covers the galaxy
+and point sources leaving 73% of the sky unmasked. We dub the corresponding symmetrized
+mask U73symm, which is shown in Figure 1. In other words, U73symm is the “antipodally
+symmetric” version of U73. The downside of the symmetrization is that the leftover area of
+the sky is diminished, in this case to 65% .
+
+We then prepare half-sky masks, along the selected directions: North-South with respect
+to the galactic plane, with respect to the dipole (1, b) = (264°, 48°) and to the hemispherical
+maximal asymmetry direction (1,b) = (225°, 1°), originally obtained in [11]. We obtain this by
+rotating the U73symm with a modified HEALPix routine alteralm and cutting half of the sky
+with a modified version of the HEALPix routine anafast that allows for asymmetric sky cuts.
+These new routines are part of a modification of HEALPix which also allows the inclusion of
+Doppler and aberration effects, and which we now dub HEALPix-Boost.*: Crucially in the
+final step we also smooth such half-sky masks on a 10’ scale to avoid the presence of sharp
+
+edges, which would otherwise add significant spurious power on small scales and could either
+enhance or suppress artificially the presence of North-South (NS) asymmetries. For each of
+1ese masks we also obtain the MASTER matrix My, which allows to get an estimator of
+1e full-sky C?’s from the masked Cy’s. More details on our HEALPix simulations can be
+found in Appendix C.
+
+Since the SMICA data and noise are beamed with a 5’ full-width half-maximum (FWHM)
+Gaussian, in order to compare with primordial (unbeamed) simulations, we debeam the Planck
+spectrum before making comparisons. On the other hand, Planck SMICA data is deconvolved
+from the HEALPix (Ngide = 2048) pixel window function (in other words, they remove it from
+
+1eir data), so we take care also to not include the pixel window function in our simulation
+
+spectra.
+
+3 Dealing with Doppler, aberration and anisotropy in the noise
+
+In order to check the significance of anomalies in the Planck data we need to compare with
+simulations and for this purpose we performed 1000 simulations with the HEALPix routine
+synfast, using as a fiducial power spectrum the best-fit spectrum for a ACDM model given
+by the Planck collaboration [1].
+
+As a next step we need to take into account of the fact that the CMB is measured
+in a boosted frame. We perform such transformation using HEALPix-Boost, which allows
+introduction of boosts directly on the maps in the Planck data. Specifically before applying
+the half-sky masks we apply a boost to all simulations with velocity given by the central
+value of Eqs. (1.1)-(1.2). Actually the boost is performed by applying the aberration with
+such value and by applying separately the Doppler effect multiplied by a correction factor
+(sometimes referred to as boost factor b,) of 2.5. The frequency-dependent boost factor by
+arises from the fact that the temperature maps computed by the Planck collaboration do
+
+not exactly represent the map of the thermodynamic temperature (sometimes referred to
+simply as CMB temperature). Instead, they are computed from a linear order transformation
+
+“The code has been originally developed and used in [30] to check for biases in power spectrum and
+non-Gaussianity [31]. It has also been cross-checked using analytical fitting functions which reproduce the
+aberration effects with high precision in [23, 30] and further cross-checked for biases in [13].
+
+>The U73symm mask as well as the modified source code of HEALPix which allows for the inclusion of
+Doppler and aberration, are made available at www.if.ufrj.br/~mquartin/cmb
+
+
+
+Figure 1. Antipodally-symmetric version of Planck’s U73 mask. The symmetrization is such that
+for every masked pixel, the antipodal pixel is also masked. This removes any unaccounted bias on
+opposite hemispheres arising from the mask itself. It also slightly reduces the amount fxy of unmasked
+sky, lowering it from 0.73 to 0.65. The green and yellow regions separated by the thick orange curve
+represent the two hemispheres aligned along Planck’s maximal asymmetry direction, which is one of
+the 3 directions analyzed in the present paper. This mask is available online [see text].
+
+which converts intensity into temperature assuming a black-body radiation spectrum. The
+resulting map thus no longer transform under boosts exactly as a temperature map would,
+and the boost factors are the necessary corrections [up to O(6?)] to the Doppler effect. For
+the Planck temperature SMICA map, in which the signal-to-noise is dominated by the 143
+GHz (by ~ 2) and 217 GHz (b, ~ 3) channels, a simple estimation is to use the average
+by & 2.5, as discussed in [32]. In order to provide a detailed quantitative conclusion on the
+significance of the boost, half of these 1000 simulations included a boost, while the other half
+were traditional, unboosted simulations.
+
+We then analyze each simulation applying 6 different masks, representing the two hemi-
+spheres along each of the 3 directions here investigated. Once this is done we extract the
+
+cl™s) from the North or South map and finally we also compute the CNS), An alterna-
+tive procedure, which could constitute a double-check, is to deboost the masked real data
+(applying a boost with negative 8, again employing the boost factor of 2.5) and compare
+the results with the simulations without any boost. The idea of deboosting the CMB sky in
+order to avoid systematic contamination in observables was discussed in detail in [23, 33].°
+Since aberration changes the location of all point sources in the sky, it is important to apply
+any point source masks before deboosting (or equivalently to use a de-aberrated mask), oth-
+erwise foreground contamination would be incorrectly masked. However, when deboosting
+the SMICA map some spurious effects are introduced, because the noise and the edges of
+the masks also get deboosted, leading to some differences with the procedure of boosting the
+simulations. We therefore leave a full study of this possibility for a future analysis.
+
+®Tdeally it should be carried out in the original data before any map-making, but this requires substantial
+changes to Planck’s pipeline.
+
+
+Finally an important issue is the one of the instrumental noise: since the observation
+time is not the same in all directions for Planck, there is some intrinsic anisotropy of the
+noise which has to be taken into account. One way of doing this is to employ the noise
+map for SMICA released by Planck, which is obtained by subtracting two half-ring SMICA
+maps, where such maps are simply obtained in the same way as for the SMICA full map, but
+considering only half of the observation time. This, however, is not optimal as it is equivalent
+0 a single noise Monte Carlo (MC) simulation. We therefore made use instead of the 100 MC
+noise simulations made available from Planck. Since the Planck collaboration has not released
+simulations for the combined SMICA map, we made use instead of the MC simulations for
+he 143 and 217 GHz frequencies. These two are then combined multiplying each one by the
+SMICA é-dependent weight functions, following [29]. As it can be seen from figure D.2 of
+hat paper, the sum of the 143 and 217 GHz channel represent over 95% of the total noise
+in the 700 < £ < 2500 range, which covers the whole range of interest here (below £ = 1000
+noise is completely irrelevant). We then analyze the noise power spectrum in the different
+aalf-sky cuts and add the mean of the MC noise simulations to the CMB results.
+
+To summarize, we have made 500 primordial CMB simulations containing a boost, 500
+primordial CMB simulations without boost, and combined these with 100 MC noise simula-
+ions for the SMICA combined map made available from the Planck collaboration (although
+he Planck team produced 1000 such noise simulations, only 100 of those were made publicly
+available).
+
+4 Results: significance of Hemispherical Asymmetry
+
+For each of the above mentioned three directions we finally compute the spectra DNS)
+
+cee +1)/(27), and depict the difference
+
+5De _ DN — Dé _ Dy’ ~ DR (4.1)
+Di Drage DN + D?
+
+in Figs. 2 and 3, comparing with mean and standard deviation of the same quantity for the
+simulations. Note that for simulations the D,’s contain also the boost effects and the noise
+power in each hemisphere. All results are obtained after binning the spectra in 50-@ bins.
+Specifically in Figure 2 we show step by step how important is each of the effects that we
+consider: smoothing of the mask, boost (Doppler and aberration) and the inclusion of the
+anisotropic noise. In both figure we also depict (dashed black curve) the average bias due to
+Doppler and Aberration, which is oscillating and has non-zero mean. Such bias was found
+in [13] to be extremely well approximated by the analytical expression
+
+6D _ _ pth
+5, ~ 4B + 2B¢ (1 - ct) , (4.2)
+e
+
+where D'} is the fiducial power spectrum and 8 is the average
+
+B= B(cosy)r = a dQ cos 7 (4.3)
+R
+
+where in turn R is the region of interest integrated over the solid angle dQ and ¥ is the angle
+relative to the boost direction. We can also see that the simulations at @ 2 1300 start having
+
+
+ee
+
+(ii): smoothed mask
+
+0 500 1000 1500 2000 0 500 1000 1500 2000
+/ /
+
+as
+q
+q
+
+(iii): (ii) + boosted sims
+
+0 500 1000 1500 2000 0 500 1000 1500 2000
+/ /
+
+Figure 2. The steps taken towards a correct evaluation of the power asymmetries, for the particular
+case of the galactic north-south hemispheres. The brown curve represents real data from Planck
+SMICA, the green curve and band represents the mean and 1o bands from 500 simulations. (i): the
+raw result obtained with the symmetrized U73 mask, without taking either boost or noise into con-
+sideration. (ii): apodizing the mask reduces the scatter in the simulations and removes biases on the
+real data. (iii): the addition of Doppler shifts the simulation mean by 48, while aberration introduce
+wiggles. (iv): the addition of noise introduces corrections for £ = 1300, introducing significant levels
+of anisotropy and slightly increasing the scatter.
+
+a net positive bias and this is due to the anisotropic noise which has been added to them and
+which becomes important at such high @.
+
+In Figure 3 we show the final results for the three directions and include also the statisti-
+cal significance of the asymmetry summing from ¢ = 2 to different €ax, in order to illustrate
+its evolution as we probe ever smaller scales. This significance in turn could in principle be
+computed using the fact that the agm’s are Gaussianly distributed, which implies that the
+Dy’s are distributed according to a x? distribution. However, we verified numerically that
+the binned quantities 6D,/D, themselves are very well described by Gaussian distributions.
+Therefore, for i multipole bins we have a simple ? distribution with i degrees of freedom:
+
+; 2
+ve > [(9Pe/ Pd ran — (5D¢/ De) sins| (44)
+
+O71.
+bin=1 bin
+
+where (6D¢/De)sims represents the average over the simulations and OPin is the variance of
+(6D¢/De) in a given bin. This variance is a sum of a term arising from cosmic variance and
+another from the instrumental noise. For a given Dy, the uncertainty is given by (see [17| or
+Eq. (11.27) in [34])
+
+2
+
+= ,/———_(p? + nM), 45
+TD (0+ D fay £ ¢) (4.5)
+
+
+— correct
+seeee ignorin
+3 le} ig B
+
+seene?
+Tene ene
+
+f°) 500 1000 1500 2000 0 500 1000 1500 2000
+Z l linax
+0.06}: dipole dir. g 4|—— correct
+_ 0.041}, 2 3p ignoring B
+Q 0.02 S
+R 0.00 s 2
+-0.02} | S 1} wuuewghase gh Tere
+-0.041/ Lo
+) 500 1000 1500 2000 0 500 1000 1500 2000
+l (imax
+0.061) | max. asymm. dir. 4|— correct
+
+sees ignoring B
+
+0 500 1000 1500 2000 0 500 1000 1500 2000
+
+/ Iinax
+
+Figure 3. Hemispherical asymmetry and its statistical significance along 3 different directions. /Left:/
+the relative difference between D,’s in two opposite halves of the sky as a function of the multipole
+£. The brown is the Planck data while the green curve and band represent the mean and lo band
+from 500 simulations, binned in 50—¢ bins. The black dashed curves are the analytical estimate of
+Eqs. (4.2)—(4.3), which ignores all noise. /Right:] the corresponding statistical (in)significance of the
+anomaly, summing all multipoles from 2 to max. The brown curve represents the correct estimate;
+the dotted blue curve is the spurious significance if one ignores to boost the simulations. Note that
+naively ignoring the boost can lead to a spurious anomaly at high ¢ between 2.5 and 2.90.
+
+where NMC is the noise power spectrum (obtained as an average through Monte Carlo simu-
+lations) multiplied by ¢(é + 1)/(27). In principle, there are extra factors in (4.5) due to the
+mask apodization [17], but for U73symm these are negligible. Propagating this error into the
+quantity (6D,/De¢), we get for a bin of A multipoles
+
+» _ 1 (DXod,)° + (Diop) _ 1 4(L— oF)
+
+a, = ~ , (4.6)
+Db A (peter) 4 A (2¢ + 1) foky
+
+where prs is the correlation between the north and south hemisphere spectra in a given ¢-bin.
+In the last step above we used the fact that (as will be shown) the asymmetry between the two
+hemispheres is never beyond a few percent to approximate DN ~ D? ~ D8" ~ D+ NMC,
+
+With the total x? we perform a goodness-of-fit test to see whether the isotropic standard
+model is a good fit to the data. Finally, to quote the significance in o levels (instead of p-
+
+values, or probabilities to exceed) using all bins from the first to the i-th bin, one must convert
+
+
+the probabilities given by
+prob = CDF [x?, i] =1- p-value. (4.7)
+
+In what follows we refrain from quoting results in terms of p-values, preferring instead using
+the corresponding o-levels, which are defined through the Gaussian distribution:
+
+V2Erf (prob) . (4.8)
+
+Here, Erf—! is the inverse of the error function and CDF is the cumulative distribution
+function of the y? distribution with i degrees of freedom:
+
+li/2, «/2]
+
+CDF{z, i] = Thy
+
+(4.9)
+where [ and ¥y are the gamma the incomplete gamma function, respectively. In other words,
+this is a straightforward generalization of the commonplace association of 1, 2, 30 as short-
+hand notation for 68.3%, 95.4%, 99.73%, (independently of whether the underlying distribu-
+tion is really Gaussian) and so forth.
+
+As it can be seen from the plots it is crucial to add the anisotropy of the noise and, to a
+
+smaller extent, the boost effects. Taking into account of these two sources of bias makes the
+real data compatible with the simulations and in fact there is no highly significant asymmetry
+left in any of the three directions. Note that since for 0 < 900 the boost bias is smaller than
+the uncertainty, the goodness-of-fit results are never changed by more than lo when boost
+effects are included. Nevertheless, a proper account of the boost does reduce the discrepancy
+of the maximal asymmetry direction for ¢ € [2, 2000] from 2.50 to 1.30, a very important
+result. This possibility was already stressed in [13] on simulations. Note that the boost can
+also increase the discrepancy, and in fact that is what happens along the galaxy direction,
+where we see a rise in the discrepancy in £ € [2, 2000] from 0.90 to 1.60. This is, however,
+still insignificant. So accounting for all directions, the proper accounting of boost does reduce
+the worst case discrepancy to less than 20, also non-significant.
+The only exception to the above claim can be seen in the very first bin (2 < @ < 50)
+along the maximal asymmetry direction. There we see a discrepancy of 3.00. This is in
+very good agreement with earlier results, dating back over a decade [3-12]. Note also that
+the behaviour of the significance of Figure 3 is in qualitative agreement with the significance
+of anomalies found by the Planck collaboration using a very different method (clustering of
+preferred directions), as it can be seen comparing with fig.28 of v3 of [11].
+
+5 Results: Dipolar modulation — a posteriori direction
+
+Several previous papers have analyzed a parameterization, in which the CMB temperature is
+assumed to be modulated by a dipolar term of the form:
+
+T = Tisotropic (1 + Amoa Cos @) , (5.1)
+
+where a is a relative angle between a specific direction and the direction of observation, which
+then translates on the C?’s to lowest order:
+
+Ce = Ce,isotropic(1 + 2Amoa COS @) « (5.2)
+
+
+Note that such a parametrization corresponds exactly to the physical Doppler effect due to
+a boost (but does not contain aberration), where Amoa is equal to the velocity 6. Although
+such an ansatz is arbitrary we still provide results on the significance of a nonzero Aymoa,
+because several analyses [6, 8, 9, 11] have claimed a detection of a large value for Ayyoa, about
+60 times bigger than the Doppler term and with a significance of about 30 when analyzing
+the low-¢’s of the CMB, namely up to @ < 64 or ¢ < 600. Of course, if we consider the
+above parametrization there is no reason why we should stop at low @’s and the full range of
+£ should be used. We repeat this for the two different directions, namely the dipole direction
+and the maximal asymmetry direction. Note however that the latter is a specific direction
+chosen a posteriori, since it has been already found to be the maximal asymmetry direction
+in Planck by other analyses. Therefore the real significance will become lower if considering
+the fact that the maximal asymmetry direction should be searched for in each simulation and
+marginalized over. In this section we compute the naive significance level, while in the next
+section we compute the unbiased significance level by looking for the modulation along the
+
+axis of maximal asymmetry for each simulation.
+
+It is important to note that the data contain a nonzero value for Amoq due to Doppler,
+aberration and to the anisotropic noise. Such effects are contained in our simulations, therefore
+what we need to constrain is the quantity
+
+Amoa = (Ablanck __ 4sims (5.3)
+
+mod mod *
+
+Given a half-sky cut a modulation such as (5.2) will induce an average effect on the different
+ons given by
+CN = CO tropic(l + 2Amoa (Cos @)) , (5.4)
+
+isotropic
+
+where the (...) is the average over one hemisphere of the modulus of the cosine of the angle
+between a given direction and the preferred direction. Then we may introduce a x? as follows:
+
+x°(Amoa) = }> > Zi’ (Di - Di) (Di - Di), (5.5)
+Lig
+
+where the Z is the inverse of the covariance matrix and the indices 7,7 can be either N or S.
+Then, D; are the quantities taken from the Planck real data or from a full simulation, while
+
+the Dy, are the averages
+
+Dp? = (DES + 5D%)(1 + 2(cosa) Amoa) + NN, (5.6)
+
+with DR standing for the mean of a Gaussian isotropic simulations and where 6De is the
+mean effect of boost on the N hemisphere which is given by (4.2):
+
+6D ~ 2BD + Be (pe - Di) . (5.7)
+
+In the absence of NS correlations, the quantity INN = rs would just be 1 /0},. given
+by (4.5). The correlations offset these values, but not by much, and we have checked that
+neglecting them leads to only slightly different results. The estimator for the best fit value of
+
+10
+
+
+Amoa is obtained by setting 0x?/2Amoa = 0, which leads to the estimator:
+
+Anoa = - peo — 1S) (DX _ Ds —NN4+ Np) _ 47° 6D}|
+e
+
++ 6D) (INN 4.2%) (DN + D3 — NX — NZ)
+
+-1
+x som a) > ler" — INS) (De)? + (INN 4 TNS) wnt
+n
+
+where the sum is performed over all the multipole bins of interest. In the absence of noise,
+boost and correlations between the hemispheres, this estimator would simplify to the follow-
+ing [13]
+A 1 do (26 + 1)6D¢/De
+mod Alcosa) xy (26+ 1)
+
+Note that this differs from the estimator used in [15] because of the factors (2¢+ 1) included
+in the sum, which weigh for the number of m—modes at each @.
+
+The results on Amoq are shown in Figures 4 and in Table 1 for different multipole
+ranges and assuming two different fiducial modulation directions: (i) (/,b) = (225°,1°),
+found in [11] to maximize the hemispherical asymmetry; (ii) the dipole direction. Note
+hat (J,b) = (225°,1°) is also very close (actually within the error bars) to the direction
+1, b) = (226°, —17°), found in [11] to maximize this dipolar modulation. We split the data in-
+ro 3 ranges:  € [2,600], which corresponds to the cosmic-variance-limited region of WMAP,
+£ € [601, 1500] which are the extra modes precisely measured by Planck (well within the
+cosmic-variance region) and ¢ € [2, 2000], which is the full range of modes accessible (€ = 2000
+are clearly dominated by noise). Figure 5 explores further the maximal asymmetry direction
+by depicting the measured Amoa using £ € [2, max] as a function of Cmax, together with the
+corresponding discrepancy with the fiducial, isotropic model. As it can clearly be seen in
+both figures, neglecting the boost makes the data look anomalous at high-¢. When properly
+reating the boost we do not find any significant detection for a modulation along the dipole
+direction, but there is still some nonzero value along the maximal asymmetry direction, where
+for the full range of scales we find Amoq = 0.0044 + 0.0014. Such result has an error and
+a central value which is one order of magnitude smaller than the official Planck results [11]
+which is limited to scales of about £ < 100, and deviates from zero at the 3.20 level.
+
+The 2 smaller subsets of @’s also allow comparison with previous results in the liter-
+ature. For 2 < & < 600 it can be seen from Table 1 that along the maximal asymmetry
+direction on these largest scales we find a 2.90 deviation from zero, with a central value of
+about Amoa * 0.01 along the maximal asymmetry direction, which is roughly consistent with
+previous results [6, 8, 9, 11, 15, 35]. Contrary to what is claimed in [35], however, we find that
+even on these large scales the boost effects cannot be completely neglected, and account for
+roughly 0.40 of the total discrepancy. For 601 < ¢ < 1500 we can compare directly with [15],
+where a strong scale-dependent modulation was invoked. In fact [15] finds that for 0 < 600
+there is a 30 anomaly, while for 601 < @ < 2048 there is only a lo deviation, so they claimed
+data contained a strong scale dependent modulation. We make here two crucial objections
+to such statement. First, as we stressed out, our treatment includes properly many physical
+effects which are important especially at high ¢: Doppler, aberration and anisotropic noise,
+
+(5.9)
+
+BS
+
+11
+
+
+maximal direction maximal direction maximal direction
+
+>
+cat
+iS
+oO
+Q
+fo)
+o
+oa
+
+-1.0 -0.5 0.0 05 1.0-0.4-0.2 00 02 04 -02 00 02 04
+Amod (%), 1 € [2,600]  Amog (%), 2 € [601, 1500] Amog (%), /€ [2, 2000]
+
+dipole direction dipole direction dipole direction
+
+Probability
+
+-1.0 -0.5 0.0 05 1.0-04-02 00 02 04 -02 00 02 04
+Amoa (%), 1€ [2,600]  Amog (%), 1 €[601, 1500] Amog (%), /€ [2, 2000]
+
+Figure 4. Measurement and simulations of the amplitude Aj,oq of a possible dipolar modulation
+of the CMB temperature power spectrum for different multipole ranges and assuming 2 different
+fiducial modulation directions: (i) the one of maximal asymmetry [see text]; (ii) the dipole one. The
+red vertical line is the value obtained from the Planck SMICA data; the histograms represent 500
+different simulations and are in turn well-fitted by a Gaussian (solid blue line). The dashed blue line is
+the best-fit Gaussian for the simulations that neglect the boost. As it can clearly be seen, neglecting
+the boost makes the data look anomalous at high-¢. Note that even for ¢ € [2,600] (roughly the
+WMAP range), the boost is relevant and alleviates the discrepancy in the maximal direction by
+0.40. Note that the values along the maximal asymmetry direction contain an a posteriori bias, since
+the direction has been chosen precisely because it maximizes the asymmetry, and therefore the real
+significance becomes lower if considering the fact that the maximal asymmetry direction should be
+searched for in each simulation. Such an unbiased analysis in depicted in Figure 6.
+
+in addition to using a symmetrized mask and the MASTER matrix for reconstructing the
+real Cy’s. This more careful treatment yields a lingering 2.20 deviation on 600 < ¢ < 1500
+Amoa = 0.0032 + 0.0015). Second, there is no reason why the data should be split into these
+wo arbitrary subsets to constrain the single parameter Ajoa. In fact from Figure 5 we can
+conclude using the all data up to 2000 that there is no clear sign of a strong scale dependence
+or € = 300. Indeed, the very first bin is the only one in tension, at 2.30, in agreement with
+what was found in [11]. However, since for larger scales the variance increases fast, a constant
+Amoa is not a bad fit when considering all scales together. So contrary to [11] we find here
+no strong reason to claim that a possible modulation must be scale-dependent. However note
+hat in the next section, as discussed below, we also find that the significance goes drastically
+down when including ¢ > 600.
+
+It is in fact very important to note the following facts. First, as stressed before, the values
+along the maximal asymmetry direction contain an a posteriori bias, since the direction has
+been chosen precisely because it maximizes the asymmetry, and therefore the real significance
+will become lower when considering the fact that the maximal asymmetry direction should be
+
+—~12-
+
+
+DIRECTION SIMS fe [2,600] ¢€ [601,1500] ¢ € [2, 2000]
+maximal with 8 0.98 + 0.35 0.32 + 0.15 0.44 + 0.14
+asymmetry (2.90) (2.20 (3.30
+ignoring 8 | 1.16+ 0.35 0.54 + 0.15 0.67 + 0.14
+(3.30) (3.50 (4.90
+dipole with 6 0.11 + 0.33 0.0940.13 0.1140.12
+(0.20) (0.60 (1.lo
+ignoring 8 | 0.22 + 0.33 0.31 + 0.13 0.54 + 0.12
+(0.70) (2.40 (4.60
+Table 1. Constraints on 100Aimoq for different multipole ranges along 2 different fiducial directions:
+the one found in [11] to maximize the low-¢ modulation and the direction of the dipole. For each
+
+direction the first row is the most accurate estimate of Amoq because it takes into account the effect
+of the boost in the simulations. However note that the values along the mazimal asymmetry direction
+contain an a posteriori bias, since it has been chosen precisely because it maximizes the asymmetry,
+so numbers in the first row should be regarded as upper bounds to the total asymmetry [see text].
+
+maximal direction maximal direction
+© 5| — correct Me St
+1.5 ® || -- = ignoring B igi
+x iq 4 ad
+1 0 >3
+€ oO
+TO5 E -
+o1
+0.0 . 0
+“0 500 1000 1500 2000 0 500 1000 1500 2000
+Imax (max
+
+Figure 5. Similar to Figure 3 for the measurement of Amoa in the range @ € [2, max]. Here the
+discrepancy is larger and amounts to 30 when considering all scales (and naively 5c if one neglects
+boost effects). Note also that data is well fit by a constant Amoa (the very first bin ¢ € [2,50] however
+disagrees with a constant Amoa at 2.30).
+
+also searched for in each simulation (and marginalized over) to have a statistically meaningful
+result. We perform such an analysis in the next section, by using a different estimator, which
+finds the modulation along the maximal asymmetry axis.
+
+Second, note also that a detection of non-zero Amoq does not necessarily mean that the
+model with dipolar modulation fits better the data, because it has one extra parameter. In
+order to assess better this we conduct a Bayesian model comparison by computing the Bayes
+Factor B, which is the ratio of Bayesian Evidences (see [36]) of the models with and without
+Amod:
+
+[os ( - PA noa) prior(A) dA
+
+1,2
+© (— Hho An)
+
+where in the modulated model we assumed a flat prior for Amog. Since the evidence is
+
+B=
+
+(5.10)
+
+13
+
+
+proportional to the probability that we associate to the correctness of the model, if we in turn
+assume these 2 models constitute the complete set of possibilities, then p(M 4) +p(Mo) = 1,
+which together with (5.10) allows us to compute both probabilities [36]. We can then ask
+by how much is the modulation model favored. It is important to note that while the exact
+
+range of any sufficiently broad priors do not affect any Bayesian parameter estimation, the
+same is not correct when doing model selection analysis, such as with the Bayes Factor. In
+fact, other things being equal, models with broader priors are disfavored because they are
+ess predictive. This is because of the Occam’s Razor factor, which is embedded in the Bayes
+Factor (see [37] for a more in-depth discussion). Since we do not want to test specific models
+
+for a dipolar modulation here, we will assume as prior for Amoa the range [—1, 1]. We thus get
+for ¢ € [2, 2000] that the modulation model, fixing the direction to be the maximal asymmetry
+one, is favored with B = 54, which corresponds to a p-value of 0.18 or equivalently, using (4.8),
+
+0 a 2.40 preference for a modulation.’ As expected, this is less than the naive expectation
+trom Table 1 (3.307) because the Bayes factor takes into account the fact that the modulation
+
+model has one free parameter for which we have little information a priori.
+
+Finally note that on the @ < 600 range, which roughly corresponds also to the WMAP
+range, the boost is already non-negligible and alleviates the discrepancy from 3.30 to 2.90,
+with a central value of Amog shifting down by + 0.002. These numbers, however, cannot be
+directly applied to WMAP data because there the average boost factor differs from the one
+in Planck.
+
+6 Results: Dipolar modulation — unbiased direction
+
+In the previous section we have assessed the significance of an anomalous dipolar power
+modulation of the temperature spectrum along determined directions. Actually however the
+direction of maximal asymmetry should not have been pre-determined (i.e., before looking at
+the data), and as such constitutes an a posteriori statistic. In order to circumvent this, one
+would have to repeat the analysis over hundreds of different directions for each simulation,
+finding its maximal asymmetry direction. This is, however, a computationally intensive route.
+
+We thus proceed along a different path which automatically finds the modulation along
+the maximal asymmetry direction, by making the crucial observation that a dipolar modula-
+tion is completely equivalent to the Doppler effect on a map. We can thus make use of the
+peculiar velocity estimators derived in [22] (see eqs. (B7), (B8) and (B15) therein) which give
+the cartesian components of a peculiar velocity from a map. Such estimators can be easily
+
+adapted to correspond also to the cartesian estimators of the modulation vector by simply
+removing the aberration contribution to the estimator, leaving only the pure Doppler effect.
+In practice, this is achieved by using the following slightly modified version of (B8) of [22]:
+
+s s (€+1+m-—s)(€+1—m+s) (€—sm+s?)
+Com = (-1)"( ay] (4(€ + 1)? — 1) (1 + 8?) (€+ sm) ;
+
+so d (€+m-—s)(€—m-+s) (€+sm-+1-—s?)
+“om (40? — 1) (1 +s?) (€— sm +1) ,
+
+(6.1)
+
+Such an estimator has been derived only in the full-sky case limit and therefore it should be
+adapted to the partial sky case. One way would be to try to transform the pseudo-ag,, into
+
+"In Bayesian model comparison the Jeffreys’ scale is often employed, but we find it much more intuitive to
+discuss results in terms of g-levels, as one of us first proposed in [38].
+
+14
+
+
+15 Planck data : 9 6 correct
+a sims including £ y 2&5 ignoring B
+Ss 10 sims ignoring f , b4
+3 wl 23
+E - I
+S05 £2
+sl
+0.0 <9
+0 500 1000 1500 2000 0 500 1000 1500 2000
+
+f max max
+
+Figure 6. Similar to Figure 5 but without the a posteriori selection of the direction of maximal
+anisotropy. The discrepancy here is typically below 2c (but over 30 if one neglects boost effects).
+The larger discrepancies are at larger scales (¢ € [2,600]), which corresponds to the range of scales
+probed by WMAP. Note that here, contrary to the estimator in Figure 5 we do not subtract the noise
+asymmetry, which explains the increase of asymmetry on small scales, where the noise dominates.
+
+Qgm’S to use in (B7) of [22], but this would require to compute a MASTER-like tensor with 4
+indices. We have checked however on masked boosted simulations that applying the estimator
+directly on the pseudo-ag,,’s and using the pseudo-C;’s everywhere in the coefficients of the
+
+estimator we obtain
+
+Planck C?’s.
+
+Monte-Carlo simula
+
+allow for two cases:
+
+cartesian componen'
+
+direction leads to a
+t
+
+scales (€ € [2,600]
+
+an unbiased estimate of the modulation. Therefore we simply used the
+
+pseudo-C?’s everywhere, obtained by applying the MASTER matrix to the smooth best-fit
+
+Thus we obtain a modulation vector Amod for each map and so we compare the results
+for the amplitude |Amoal of the modulation with our simulations. In an isotropic universe
+observed by a boosted observer the amplitude of the modulation should converge to a nonzero
+value due to the peculiar velocity. The presence of the anisotropic noise, moreover, biases the
+result at high @, so it is important to take it into account. We do this by summing the 100
+
+ed noise dg’s made available by the Planck collaboration and summing
+
+hem (with the SMICA weights) to our own simulated temperature ag ,,’s. Once more, we
+
+one including Doppler and Aberration in the simulations, the other not.
+
+Figure 6 depicts the modulation amplitude obtained in this way in both cases. Each
+
+of the modulation is Gaussianly distributed, and therefore the magnitude
+
+of the amplitude vector distribution is approximately given by a noncentral chi distribution.
+From this distribution we compute the lo bands as well as the significance levels of Figure 6.°
+As it is clear from the Figure, removing the a posteriori selection of the maximal asymmetry
+
+diminished discrepancy between simulations and data, and we conclude
+
+hat no significant modulation anomalies are present. The larger discrepancies are at large
+
+, which corresponds to the range of scales probed by WMAP. These
+
+discrepancies however vanish when including smaller scales, unless one mistakenly ignored the
+boost. Note that some of the previous analyses have claimed [11, 15] that a scale-dependent
+modulation may be necessary to fit the data, in such a way that an effect is present at
+£ < 600 but it strongly decays at higher @. We stress here that such a conclusion is only weakly
+supported by our results, in the sense that there is no reason to split the data a posteriori into
+these two subsets and that our estimator is by construction scale-independent and therefore
+
+SIf we had access to all 1000 MC noise simulations from Planck, we could bypass the need to specify a
+noncentral chi distribution and rely on the interpolated histograms themselves.
+
+15
+
+
+the whole range of data should be used. An analysis which includes scale dependence should
+be made with a different ansatz for the modulation, which hopefully should be physically
+motivated and with the least amount of extra parameters.
+
+Note again that, as in the previous section, the boost is already non-negligible and
+alleviates the discrepancy by about half o even at ¢ < 600, which correspond to the WMAP
+scales of interest.
+
+7 Conclusions
+
+We have analyzed the CMB Temperature map released by Planck, the SMICA map, which is
+a linear weighted combination of different frequency maps and looked for differences in power
+spectra on opposite hemispheres along some special directions: North South compared to
+the galactic plane, along the dipole direction and along the direction of maximal asymmetry
+(1, b) = (225°, 1°) found by Planck [11] (which is also close to the WMAP maximal asymmetry
+direction [3, 6, 8, 11]).
+
+We used a new technique to analyze anomalies by first building an antipodally sym-
+metrized version of the U73 mask, which by construction cannot introduce a bias on hemi-
+spherical asymmetries, and then smoothed the resulting mask on a 10’ scale. We have thus
+reconstructed the real Cy’s using the MASTER approach and compared the real data with
+simulations. We properly added both Doppler and aberration effects due to the peculiar
+motion of the observer using the methods developed in our previous work performed on simu-
+lations [13] using them now on real data. We also added the anisotropic Planck noise. We find
+three main results, improving on previous analyses [15] in several ways: with the symmetrized
+mask, the reconstruction of C2’s from the Cys, the inclusion of aberration and anisotropic
+noise and also by using a new estimator which finds the maximal asymmetry direction for
+each simulation.
+
+First, all such effects are important, and after subtraction of the above effects we find
+that hemispherical anomalies are less significant than 1.50 the full range of @, up to 2000.
+
+Second, we find results on a scale-independent “dipolar modulation” Amoq of the power
+spectrum, by introducing a proper estimator, which differs by the one used in [15] and takes
+into account of the boost and of anisotropic noise. Pre-selecting the maximal asymmetry
+direction (which was previously found by the Planck collaboration and it is consistent also
+with the maximal asymmetry direction of WMAP) we find Amoq = 0.0044 + 0.0014 for the
+full range of 2 < @ < 2000, which would constitute a 3.30 anomaly when we compare to Amoa
+of simulations. Note that such value contrasts with the low-é results [3, 6, 8] including the
+Planck analysis [11], which have both central value and error larger by an order of magnitude.
+However this 3.30 result is an overestimate of the real statistical significance, when comparing
+with the modulation for simulations along a generic direction, while the selected direction for
+1e Planck data was not randomly chosen. A better statistics which does not suffer from this
+bias is built by using an estimator which finds directly the amplitude of the modulation along
+1e maximal asymmetry axis for each simulation. This is achieved by using three estimators
+which correspond to the cartesian components of a modulation vector Amod: With this
+unbiased procedure we find that the real statistical significance in the range of 2 < ¢ < 2000
+is less than lo, and it is only 2.40, in the WMAP-equivalent range of 2 < @ < 600. Note
+1at the presence of a marginally significant modulation when considering £ < 600 scales and
+1e absence of a modulation when including smaller scales may lead to the idea that it could
+be necessary to fit the data with a scale-dependent modulation. We stress here that such a
+
+16
+
+
+i original U73 Ars Doak U73 symmetrized
+n afl ae
+Nem ea ern = 0.04)K
+A fpr prog? = 0.02
+RANI S 0.00
+lil -0.02
+-0.04
+500 1000 1500 2000 0 500 1000 1500 2000
+/ /
+
+Figure 7. Corrections from symmetrizing the mask and applying the MASTER approach for the case
+of the hemispheres aligned with the galactic plane. The brown curve and green regions are the same as
+in Figure 2. The dashed red curve and gray band stand for the same but without using the MASTER
+approach. We find that although the symmetrization of the mask removes the bias from the C,’s (i.e.,
+prior to the MASTER correction), the difference becomes very small for the reconstructed C/’s (i.e.,
+after the MASTER correction). Computing the MASTER matrix is nevertheless time-consuming and
+its inverse become numerically unstable to compute unless one bins the multipoles. Therefore, using
+a symmetric mask might be more practical in some applications.
+
+conclusion is only weakly supported by our findings since we have no justification to split the
+data a posteriori into these two subsets for our scale-independent estimators, and therefore
+the whole range of & should be used. An analysis which includes scale dependence should
+be made with a different estimator, either because of a physically motivated reason or by
+showing that it improves the fit even at the expense of extra parameters.
+
+Third, we stress that ignoring the effect of a boost would lead to a spurious significance
+of hemispherical anomalies at almost 30 in the full range of ¢’s and an artificially enhanced
+nonzero result for Amoa, which would reach roughly the 3.50 level (and the 5¢ level without
+removing the above mentioned a posteriori bias). As a last remark note also that a boost
+affects not only temperature maps but also polarization ones. Therefore future analysis of
+power asymmetries, for either temperature or polarization, should always take both Doppler
+and aberration effects into account.
+
+Acknowledgments
+
+Some of the results in this paper have been derived using the HEALPix package [18]. We thank
+Gabriela Antunes, Jacques Delabrouille, Jaume Garriga, Massimiliano Lattanzi, Michele
+Liguori, Paolo Natoli, Shaun Hotchkiss and Thiago Pereira for useful discussions and com-
+ments. We thank Viviana Niro for discussions and suggestions (and checking the deboosted
+spectra). MQ is grateful to Brazilian research agencies CNPq and FAPERJ for support and
+to Universita di Ferrara for hospitality. AN is grateful to Universidade Federal do Rio de
+Janeiro (UFRJ) for hospitality. AN is supported by the grants EC FPA2010-20807-C02-02,
+AGAUR 2009-SGR-168.
+
+A Comparison of original and symmetrized masks
+
+In Figure 7 we illustrate the corrections introduced by symmetrizing the mask and employing
+the MASTER approach. As it can be seen, the non-symmetric U73 mask introduces a bias
+to the pseudo Des. This bias is removed through the use of the MASTER matrix, in which
+case the end results are similar (but not identical) to the ones obtained using the symmetric
+
+17
+
+
+U73symm mask. We conclude that the symmetrization of the mask introduces a small but
+not completely negligible correction. Since by construction it cancels any bias arising from
+leakage of mask power into the final result, we find it to be the safest approach.
+
+It is interesting to note that for the complete masked sky, the use of a antipodally
+symmetric mask removes all first neighbors (¢, + 1) correlations. This is however no longer
+true if we analyse individual hemispheres.
+
+Another advantage of a symmetric mask arises in cases where multipole binning of the
+spectra is either undesirable or impractical, for instance when computing asymmetries in
+narrow £ ranges. This is because the MASTER matrix become numerically unstable to invert
+unless one bins the multipoles. In those cases, using a symmetric mask as a safeguard could
+be even more important.
+
+B_ Constructing a symmetrized masks
+
+In order to construct a symmetric mask from a non-symmetric mask we work on pixel-space
+assuming the original mask is ordered according to HEALPix’s RING ordering scheme. The
+simplest way to symmetrize the mask is to reorder the pixel indexing of the original mask to
+construct a parity-inverse mask and then multiply both masks.
+
+This reordering can be achieved by setting each pixel angles {6,¢} > {x — 0,64 7}.
+With these transformations “polar” pixels remain “polar” and likewise for “equatorial” pixels,
+so we can treat each region separately. Based on Eqs. (2)—(9) of [18], we define:
+
+Ppotar(ts3) = 2G—-1i+j-1, (B.1)
+Dequat (4, J) = Pholar(Neides 0) + Ai _ Ngide) Neide +9; (B.2)
+Peotar (ts j= Pequat (3.Nside + 1,0) — 2(i — 5Neiae)(é — 1 — 3Noide) +3, (B.3)
+jmax(i) = 4%, (B.4)
+rue = 4Nsgide - (B.5)
+(B.6)
+We then construct 2 lists, for the polar and equatorial strips:
+For i= 1 to Neiae—1
+For j = 1 to j¥,,(i) (B.7)
+. : a . ., lin », _N /.
+list: {Pani Photar (4Noite ~ é, 1 + Mod(j + 5 Jinx) 1. Fat®))) }
+and
+For i = Ngiae to 2Neide
+For j = 1 to jeauat (B.8)
+
+1
+list2 : {Pua (i,9), Pequat (4Nsiae — i,1+ Mod (i + gJmax — 1 Jue’) ) \ :
+
+Each list element is a pair of indices of antipodal pixels. The last 2Nsiqe terms of list2 are
+redundant, so we define a list3 by dropping these terms from list2. Finally, we construct one
+single list4 by the juxtaposition of listl and list3. This final list represents the sought out
+indices pairings. By reordering the original mask pixels according to this list one gets an
+antipodal mask.
+
+18
+
+
+C. Details of our HEALPix simulations
+
+In all our simulations we employ the following HEALPix parameters: nside = 2048; nlmax =
+4000 (except for creating the masks, in which case we used nlmax = 5000); iter_order = 1;
+regression = 0; won = 1; iseed 1,..., —500. For Planck data and noise, we instead used
+iter_order = 3. We also do not apply the pixel window functions. Our modified HEALPix
+allows the inclusion of boost effect in the synfast routine. This is controlled through two new
+flags: “ab_dopp” (0 for no boost, 1 for Doppler only, 2 for Doppler and aberration) and “beta”
+(the boost velocity). In order to employ a boost factor of 2.5, we apply 2 consecutive boosts,
+one with ab_dopp = 2 and beta = 0.00123, and the other with ab_dopp = 1 and beta =
+0.001845. Finally, to deboost the SMICA map, we used the same procedure but inverting the
+sign of beta, taking care first to: (i) debeam the data, (ii) mask the sky (to avoid missing the
+foregrounds due to aberration) and (iii) remove the noise (which is added back at the end,
+avoiding a deboosting of the noise).
+
+References
+
+1] Planck Collaboration Collaboration, P. Ade et al., Planck 2018 results. I. Overview of
+products and scientific results, arXiv:1303.5062.
+
+2] WMAP Collaboration Collaboration, C. Bennett et al., First year Wilkinson Microwave
+Anisotropy Probe (WMAP) observations: Preliminary maps and basic results,
+Astrophys.J.Suppl. 148 (2003) 1-27, [astro-ph/0302207].
+
+3] H. Eriksen, F. Hansen, A. Banday, K. Gorski, and P. Lilje, Asymmetries in the Cosmic
+Microwave Background anisotropy field, Astrophys.J. 605 (2004) 14-20, [astro-ph/0307507].
+
+4| F. K. Hansen, P. Cabella, D. Marinucci, and N. Vittorio, Asymmetries in the local curvature of
+the WMAP data, Astrophys.J. 607 (2004) L67-L70, [astro-ph/0402396].
+
+5| F. K. Hansen, A. Banday, and K. Gorski, Testing the cosmological principle of isotropy: Local
+power spectrum estimates of the WMAP data, Mon.Not. Roy. Astron.Soc. 354 (2004) 641-665,
+[astro-ph/0404206].
+
+6] H. K. Eriksen, A. Banday, K. Gorski, F. Hansen, and P. Lilje, Hemispherical power asymmetry
+in the three-year Wilkinson Microwave Anisotropy Probe sky maps, Astrophys.J. 660 (2007)
+L81-L84, [astro-ph/0701089].
+
+7| A. Bernui, Anomalous CMB north-south asymmetry, Phys.Rev. D78 (2008) 063531,
+[arXiv :0809.0934].
+
+8] F. Hansen, A. Banday, K. Gorski, H. Eriksen, and P. Lilje, Power Asymmetry in Cosmic
+Microwave Background Fluctuations from Full Sky to Sub-degree Scales: Is the Universe
+Isotropic?, Astrophys. J. 704 (2009) 1448-1458, [arXiv:0812.3795].
+
+9| J. Hoftuft, H. Eriksen, A. Banday, K. Gorski, F. Hansen, et al., Increasing evidence for
+hemispherical power asymmetry in the five-year WMAP data, Astrophys.J. 699 (2009)
+985-989, [arXiv: 0903. 1229].
+
+[10] F. Paci, A. Gruppuso, F. Finelli, A. De Rosa, N. Mandolesi, et al., Hemispherical power
+asymmetries in the WMAP 7-year low-resolution temperature and polarization maps,
+arXiv:1301.5195.
+
+[11] Planck Collaboration Collaboration, P. Ade et al., Planck 2013 results. XXIII. Isotropy and
+statistics of the CMB, v3, arXiv: 1303.5083.
+
+[12] Y. Akrami, Y. Fantaye, A. Shafieloo, H. Eriksen, F. Hansen, et al., Power asymmetry in
+
+19
+
+
+13
+
+14
+
+15
+
+16
+
+17
+
+18
+
+19
+
+20
+
+21
+
+22
+
+23
+
+24
+
+25
+
+26
+
+27
+
+28
+
+29
+
+30
+
+WMAP and Planck temperature sky maps as measured by a local variance estimator,
+Astrophys.J. 784 (2014) L42, [arXiv:1402.0870].
+
+A. Notari, M. Quartin, and R. Catena, CMB Aberration and Doppler Effects as a Source of
+Hemispherical Asymmetries, JCAP 1403 (2014) 019, [arXiv:1304.3506].
+
+S. Burles and S. Rappaport, Aberration of the Cosmic Microwave Background, Astrophys.J.
+641 (2006) L1-L4, [astro-ph/0601559].
+
+S. Flender and S. Hotchkiss, The small scale power asymmetry in the cosmic microwave
+background, JCAP 1309 (2013) 033, [arXiv: 1307 .6069].
+
+A. Bernui, A. Oliveira, and T. Pereira, North-South non-Gaussian asymmetry in PLANCK
+CMB maps, arXiv: 1404.2936.
+
+E. Hivon, K. Gorski, C. Netterfield, B. Crill, S. Prunet, et al., Master of the cosmic microwave
+background anisotropy power spectrum: a fast method for statistical analysis of large and
+complex cosmic microwave background data sets, Astrophys.J. 567 (2002) 2,
+[astro-ph/0105302].
+
+K. Gorski, E. Hivon, A. Banday, B. Wandelt, F. Hansen, et al., HEALPix - A Framework for
+high resolution discretization, and fast analysis of data distributed on the sphere, Astrophys. J.
+622 (2005) 759-771, [astro-ph/0409513].
+
+WMAP Collaboration Collaboration, G. Hinshaw et al., Five-Year Wilkinson Microwave
+Anisotropy Probe (WMAP) Observations: Data Processing, Sky Maps, and Basic Results,
+Astrophys.J.Suppl. 180 (2009) 225-245, [arXiv:0803.0732].
+
+C. Lineweaver, L. Tenorio, G. F. Smoot, P. Keegstra, A. Banday, et al., The dipole observed in
+the COBE DMR four-year data, Astrophys. J. 470 (1996) 38-42, [astro-ph/9601151].
+
+J. C. Mather, D. Fixsen, R. Shafer, C. Mosier, and D. Wilkinson, Calibrator design for the
+COBE far infrared absolute spectrophotometer (FIRAS), Astrophys. J. 512 (1999) 511-520,
+[astro-ph/9810373].
+
+L. Amendola, R. Catena, I. Masina, A. Notari, M. Quartin, et al., Measuring our peculiar
+
+velocity on the CMB with high-multipole off-diagonal correlations, JCAP 1107 (2011) 027,
+[arXiv: 1008. 1183].
+
+A. Notari and M. Quartin, Measuring our Peculiar Velocity by ’Pre-deboosting’ the CMB,
+JCAP 1202 (2012) 026, [arXiv:1112.1400].
+
+T.S. Pereira, A. Yoho, M. Stuke, and G. D. Starkman, Effects of a Cut, Lorentz-Boosted sky
+on the Angular Power Spectrum, arXiv: 1009 .4937.
+
+C. L. Francis and J. A. Peacock, An estimate of the local integrated Sachs- Wolfe signal and its
+impact on cosmic microwave background anomalies, MNRAS 406 (July, 2010) 14-21,
+[arXiv:0909.2495].
+
+A. Rassat, J. L. Starck, and F. X. Dupe, Removal of two large scale Cosmic Microwave
+Background anomalies after subtraction of the Integrated Sachs Wolfe effect, arXiv: 1303 .4727.
+
+A. Rassat and J. L. Starck, On Preferred Axes in WMAP Cosmic Microwave Background Data
+after Subtraction of the Integrated Sachs- Wolfe Effect, arXiv:1303.5051.
+
+A. Rassat, J.-L. Starck, P. Paykari, F. Sureau, and J. Bobin, Planck CMB Anomalies:
+Astrophysical and Cosmological Secondary Effects and the Curse of Masking, JCAP 1408
+(2014) 006, [arXiv:1405.1844].
+
+Planck Collaboration Collaboration, P. Ade et al., Planck 2013 results. XI. Component
+separation, arXiv: 1303.5072.
+
+R. Catena and A. Notari, Cosmological parameter estimation: impact of CMB aberration,
+arXiv:1210.2731.
+
+20
+
+
+31
+
+32
+
+33
+
+34
+
+35
+
+36
+
+37
+
+38
+
+R. Catena, M. Liguori, A. Notari, and A. Renzi, Non-Gaussianity and CMB aberration and
+Doppler, JCAP 1309 (2013) 036, [arXiv:1301.3777].
+
+Planck Collaboration Collaboration, N. Aghanim et al., Planck 2013 results. XX VIL.
+Doppler boosting of the CMB: Eppur si muove, arXiv: 1303.5087.
+
+D. Menzies and G. Mathews, Peculiar velocity and deaberration of the sky, Astrophys.J. 624
+(2005) 7-9, [astro-ph/0409175].
+
+S. Dodelson, Modern cosmology. Academic Press, 2003. Book’s website:
+http://home.fnal.gov/~dodelson/book.html.
+
+M. Axelsson, Y. Fantaye, F. Hansen, A. Banday, H. Eriksen, et al., Directional dependence of
+ACDM cosmological parameters, Astrophys.J. 773 (2013) L3, [arXiv:1303.5374].
+
+R. Trotta, Bayes in the sky: Bayesian inference and model selection in cosmology,
+Contemp.Phys. 49 (2008) 71-104, [arXiv: 0803. 4089].
+
+P. Gregory, Bayesian Logical Data Analysis for the Physical Sciences. Cambridge University
+Press, 2010.
+
+T. Castro and M. Quartin, First measurement of og using supernova magnitudes only, MNRAS
+443 (Sept., 2014) L6-L10, [arXiv: 1403.0293].
+
+21

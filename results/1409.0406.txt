@@ -1,0 +1,1085 @@
+1409.0406v1 [nlin.SI] 1 Sep 2014
+
+‘acXiv
+
+Soliton Fay identities. I. Dark soliton case.
+
+V.E. Vekslerchik
+Usikov Institute for Radiophysics and Electronics
+12, Proskura st., Kharkov, 61085, Ukraine
+
+E-mail: vekslerchik@yahoo.com
+
+AMS classification scheme numbers: 35Q51, 35C08, 11C20
+
+Submitted to: J. Phys. A: Math. Gen.
+
+Abstract. We derive a set of bilinear identities for the determinants of the matrices
+that have been used to construct the dark soliton solutions for various models. To give
+examples of the application of the obtained identities we present soliton solutions for
+the equations describing multidimensional quadrilateral lattices, Darboux equations
+and multidimensional multicomponent systems of the nonlinear Schrédinger type.
+
+1. Introduction.
+
+It has been known since the 1970s that solutions of various integrable equations possess
+similar structure. Probably the brightest illustration of this fact is the so-called direct
+approach elaborated by Hirota, who i) noted that integrable equations can be reduced
+to a special, bilinear, form and ii) proposed the famous ansatz to solve the latter.
+The universality of this ansatz even gave rise to the search for other equations that
+can be solved in a similar way, which successfully resulted in the discovery of many
+new integrable models. Later, similar approach, when one starts from the structure of
+solutions instead of, for example, constructing the inverse scattering transform, provided
+a wide range of classes of particular solutions built from determinants (Wronskians,
+Casoratians, determinants of Toeplitz or Hankel matrices, etc) or Pfaffians. A large
+number of works is devoted to the (quasi)periodic solutions of integrable systems. Most
+of them are based on a modification of the inverse scattering method or the so-called
+algebro-geometric approach. The last method, which has been developed for almost
+all known integrable systems, exploits some rather sophisticated pieces of the theory of
+functions of complex variables. However, in many cases these solutions can be found
+with less effort, in a more straightforward way. One can find in [I] or [21/3] [4,5] examples
+of how to construct the ‘finite-genus’ explicit solutions by means of the so-called Fay
+identities [I] [6] for the 6-functions associated with compact Riemann surfaces using
+calculations that seem elementary if compared with the ‘full-scale’ algebro-geometric
+
+approach.
+
+
+Soliton Fay identities. I. Dark soliton case. 2
+
+In all of the above cases we have different realizations of the direct approach that
+can be summarized as follows. One starts with the known structure of the solution
+(Hirota ansatz, combinations of Wronski/Casorati/Toeplitz/Hankel determinants or 6-
+functions). Next, one has to determine some parameters and to demonstrate that
+this choice of parameters meets the equation in question. To do this one uses some
+identities related to the objects involved in the ansatz (the identities from Hirota
+calculus, ‘classical’ determinant identities or Fay identities for the 6-functions).
+
+The aim of this work is to simplify the direct approach for solitons. We study some
+properties of the matrices that have been used in [bj [7] [8 [9 (10) [11] to construct the
+dark soliton solutions for various models and derive some identities that are satisfied by
+these matrices and that can be viewed as soliton analogues of the Fay identities.
+
+In the title of the paper (and throughout its text) we use the term ‘dark
+soliton’ which is usually associated with localized objects existing against plane wave
+backgrounds or, from the mathematical viewpoint, solutions satisfying non-vanishing
+finite-density (i.e. with constant or bounded modulus) boundary conditions. This
+usage is somewhat dubious because we, first, do not discuss below the boundary value
+
+problems. Second, in examples in section [6] we present solutions with unbounded
+background (though they can be made bounded by admitting complex parameters,
+the question that, again, we do not discuss in this paper). Finally, our approach may
+lead to the so-called anti-dark solitons. Nevertheless, we use this term i) to indicate that
+the identities which are particular cases of the Fay identities presented below have been
+used to obtain dark soliton solutions for various models and ii) to distinguish the case
+of this paper from the bright soliton case (with zero boundary conditions) where soliton
+matrices/determinants and, hence, Fay identities have similar but different structures
+and which will be studied in the second part of this work.
+
+We start with introducing in section 2]a class of matrices than can be called ‘dark
+soliton matrices’. By simple algebra we deduce the set of bilinear identities that are
+satisfied by the determinants of these matrices (section 3), present their alternative
+formulations (section 4) and their differential versions (section [5). We discuss a few
+applications of the obtained identities in section [6] where we use them to construct
+
+solutions for the equations describing multidimensional lattices, Darboux equations and
+multicomponent equations of the nonlinear Schrodinger (NLS) type.
+
+2. Dark soliton matrices.
+
+2.1. Notation
+The central objects of our study are the determinants
+
+Q(A) = det |1 + A] (2.1)
+and the shifts that are defined as
+
+TeQ(A) = det |1 + AHe| (2.2)
+
+
+Soliton Fay identities. I. Dark soliton case. 3
+
+where H¢ is the constant diagonal matrix defined by,
+
+He = (C= L)(C-R)* (2.3)
+with constant diagonal matrices L, R and unit matrices being omitted: ¢ — L stands for
+¢1—Lete.
+
+To simplify the following formulae we use the ‘set’ notation, X = {&1,...,€,}, with
+|...| standing for the number of elements of the set, |X| = n, and basic set operations
+
+denoted as XY = XU Y, CX = X¢ = {C} UX and X/& = {H,..., €&,-.-En}. We use the
+set indices to indicate the superposition of the shifts,
+
+Tx = [[T: 2.4)
+EEX
+or
+
+TxQ(A) = det |1 + AHx| 2.5)
+
+where
+
+Hx = | [ He. 2.6)
+
+€eX
+Sometimes, when the matrix A is fixed, we do not write the A-dependence of 2 explicitly
+and use an alternative notation for the shifted determinants,
+
+Q(X] = Tx = det |1 + AHx|. (2.7)
+
+2.2. Rank one condition.
+
+In the following sections we derive the identities for the determinants of the so-called
+‘almost-intertwining’ matrices [12] that satisfy the ‘rank one condition’ [13}{14,[15), which
+is a particular case of the Sylvester equation (see [16] {17]). We write this condition as
+
+LA — AR = | £) (al. (2.8)
+Here, | £) is a constant N-component column, |) = (¢;,...,€y)", (a| is an N-component
+row, (a| = (a), ...,a@y). From the viewpoint of applications, namely vectors (a| determine
+the dependence of the matrices A on the coordinates describing the model we are dealing
+with.
+One of the consequences of (2.8) is the following
+
+Proposition 1 The shifted determinants (2.1) can be presented as
+
+TeQ(A) = Q(A) [1 + (al (R — 6) *G(A)| €)] , (2.9)
+
+Te'Q(A) = Q(A) [1 — (alG(A)(L — ¢)"| £)] (2.10)
+where
+
+G(A) = (1+A)7?. (2.11)
+
+The proof of these statements is presented in
+
+The following result plays a crucial role in the derivation of the soliton Fay identities.
+
+
+Soliton Fay identities. I. Dark soliton case. 4
+Proposition 2 If matrices X and Y are given by
+
+X = AHx, Y = AHy (2.12)
+where X and Y are two arbitrary sets, then
+
+(T2(X)) (Tz'@(Y)) = MEKJA(Y) [1+ (YIG(Y/Dxv(G)GOK)|E)]}— (2.13)
+with (y| = (a|Hy and
+
+Dxy(¢) = HxHy! (R—¢)' — (L-Q) (2.14)
+
+(see [Appendix B] for a proof).
+
+2.3. Derivation of the main identity.
+
+The significance of proposition 2] is that it ‘extracts’ the dependence on ¢ outside
+the determinants and demonstrates that the left-hand side of (2.13) is a meromorphic
+function of ¢. Now we use the elementary formula for the quotient of the polynomials,
+
+Qt) _ S Ci (2.15
+
+Pi) Stn
+where P(t) = J]}_,(t — m), Q(£) is a polynomial whose degree is less than n an
+c = Q(ni)/P'(m) which we rewrite as
+Alt.X) _ ya Py(XY) A(n.X)
+= T,(X, Y) = ————~ 2.16
+BEY) Qe tay Y= BY (
+with
+At,Y)=[[(t-n), AG Y)=T][][[«-»). (2.17
+ney €€X neY
+It follows from (2.16) anc that, in the case of |X| < |Y|,
+So Te(X, Y)Dxv(6) = Hey! A(R, X)A“'U(R, Y) — AW, AHL) (2.18
+ceY
+which leads, together with Hx A(R, X) = A(L, X), to
+SE e(X, Y)Dxv(¢) = 0. (2.19
+ceY
+Another consequence of (2.16) is that in the case of |X| < |Y|
+DIP C(X, Y) = Sixty (2.20
+ceY
+which, together with (2.13), implies
+So P(X, Y) (TeX) (TEO(Y)) = dixpyyj@OQUY). (2.21
+ceY
+
+Noting that
+
+TeQ(X) = Tex(A) (2.22
+
+
+Soliton Fay identities. I. Dark soliton case. 5
+and
+
+Te'Q(Y) = TycQ(A) for CEY (2.23)
+one can rewrite the last identity as
+
+SETH Y) (TyxQ(A)) (Tym (A) = dxjsriy) (PxQ(A)) (TyQ(A)) (2.24)
+
+3. Fay identities.
+
+3.1. The main identity.
+
+Hereafter, we fix the ‘base’ matrix A, do not write it explicitly and use notation (2.7).
+Statement (2.24), which is the main identity of this paper, can be formulated as
+
+Proposition 3 For any sets X and Y, |X| < |Y|, the shifted determinants 0,
+
+Q[X] = det |1 + AHx|, 3.1)
+satisfy the following bilinear identity:
+dixjayy OLX] QLY] = SOT, (X,Y) Q[Xn] OY /y] 3.2)
+neY
+where
+A(n, X)
+r,(X, Y) = ———... 3.3)
+" A(n, Y/n)
+It is easy to see that equation (8.2) is a straightforward generalization of the famous
+Hirota bilinear difference equation [18] (when |X| +1 < |Y|) or the Miwa equation
+(when |X|+1= |Y|). Thus, proposition 3] states that we have obtained the dark soliton
+
+solutions for the Hirota and Miwa equations.
+
+3.2. Subset identities.
+
+To make visible the ‘combinatorial’ aspects of the Fay identities, it is instructive to
+
+introduce the function
+Q[X] Q[Y]
+
+0(X, Y) = ————. A
+OY) =a (3.4)
+
+In terms of ©, which has the property
+(X,Y) = (-)“"'@(Y,X), (3.5)
+
+the main identity looks like
+(—)ixiai®(X% Y) = $2 &(X,Y/n) (|X| < [Y)). (3.6)
+ney
+
+Choosing some set Z as ‘universal’ one and taking complementary X and Y,
+XUY = Z, one can derive from the above equation that, if n meets N +1 < 2n,
+
+n< N where N = |Z|, then
+
+(=)8banivar D> X(Y)O(Z/Y,Y) = SD ya (Z,X)@(Z/X,X) (3.7)
+
+YCZ XCZ
+|Y|=n |X|=n-1
+
+
+Soliton Fay identities. I. Dark soliton case. 6
+
+with
+xa(Z.X) = D7 x(CX). (3.8)
+Cez/X
+Analyzing (8.7) in the case when y is the characteristic function, y(X) = |X|, one can
+deduce
+So O(Z/X,X)=0  (1<n<N-1, N32). (3.9)
+
+XcZ
+[XJ=n
+
+A more general result can be obtained for any additive y, y(XY) = x(X) + x(Y). In
+this case
+
+xi(Z, X) = x(Z) + (I2Z| — |X| — Y) xX) (3.10)
+and (8.7) together with (8.9) imply that function
+Fy = Yo x(X)®(Z/X,X) (3.11)
+ie
+
+satisfies equation
+
+(—)5 "bon wy Fn = (N= n) Fra (N/2<n<N). (3.12)
+From this equations and
+
+Fy_n _ (-)P-D+1 BF (3.13)
+which follows from the definition of F,,, one can easily obtain that F,, = 0 for
+2<n<N-2, or
+
+So x(X)@(Z/X,X)=0 (2<n<N-2, N>4). (3.14)
+
+ae
+
+Returning to the determinants Q[X], one arrives at
+
+Proposition 4 For any set Z and arbitrary function x(&), the shifted determinants Q
+satisfy the following bilinear identities:
+
+S> nlX,Z) QX|QZ/XJ=0  (1<n<|zj-1,\Z)>2) (3.15)
+Xen
+S> y(XZ) QIN] Q[Z/X]=0 (2<n<|z|-2|4\>4) (3.16)
+Kfon
+
+where
+m&D= aE AOA) a (3.17)
+
+
+Soliton Fay identities. I. Dark soliton case. 7
+4. Miwa shifts.
+
+One of the methods used to tackle integrable models is the so-called functional
+representation when an infinite set of integrable equations (a hierarchy) is presented
+as a functional equation or a finite set of functional equations which are usually written
+in terms of the Miwa shifts. These shifts are defined by
+
+Be f(tedlnan = F(te + C*/k) (4.1)
+where € is a constant (usually, 1 of 7).
+From the definition of the matrices Hq (2.3) it is clear that the shifts T, can play the
+role of the Miwa shifts, or give rise to the continuous flows, only near the point a = oo
+(otherwise one cannot meet the condition limg_,9E¢ = 1), which restricts universality
+of the presented Fay identities. More flexible approach is to model the Miwa shifts as
+
+E, = TaT,! (4.2)
+
+where « is some fixed (constant) parameter, that leads to the typical presentation of Eq
+as a power series E, = 1+ (a —)"D, where D,, are some differential operators.
+In this section we rewrite the main identity (8.2) and its consequences in terms of
+
+the operators or, more generally,
+Ey = [[E.=TaT,", (4.3)
+
+acA
+ntimes
+
+Considering various ways of constructing sets X and Y of K, = { ROR}, A and B, with
+« ¢ A,B one can derive various E-identities. For example, taking X = B, Y = KA with
+|A| = |B] +n, n = 1,2,3 one can rewrite (3.2) as
+
+(Ea) (En) = S71 70(A,B) (Eajo®)(Eon® = (|A| = [BI +1) (44
+(Eq) (EpQ) = Saal B) (Ea/o)(Eon®) = (JAJ= [BJ +2) (4.5
+(Ea)(Ep®) = Tals B) (Eaja®)(Eon®) (AJ = [BI +2) (4.6
+(E42) (Ep) = Saal B) (Ea/o)(Eas®) (JAY =|BJ +3) (47
+
+acA
+where
+Q = T,Q, Q=T70 4.8
+and
+A(a,B) A(K, A/a)
+A(a, A/a) A(k,B)
+From the above formulae one can obtain a set of ‘homogeneous’ equations by replacing
+
+B with BK,,:
+
+0= So ra(A, B)(a — x) ATP (By j.2)(Ean®) (|Al > |B] +1), (4.10)
+acA
+
+Ya(A, B) = 4.9
+
+
+
+Soliton Fay identities. I. Dark soliton case. 8
+
+0 = So ra(A, B)(a — 6) OPI? (Eajo9)(Ean®) (Al > |B] +2), (4-11)
+acA
+
+0= So ra(A, B)(a — 6) PI ?(Ey/.9)(Ean®) (|| > |B] +2), (4-12)
+acA
+
+0= So y0(A, B)(a — «)/AIIBI3 (By ,0)(Eon®)  (|A| > |B] +3). (4.13)
+acA
+In a similar way, (8.2) with X = B, Y = «A and |A| = |B| leads, after replacing
+B > BK,, and applying the shift Tz!, to
+A(k, A)
+
+5\A),\b|(EaQ) (Ep) — Ae B) (Eq) (Ep)
+= Yo t0(A, B)(a = £6) P(Eg jo) (Eon) (4.14)
+acA
+x A(k, A
+61a/,1B| (Ea) (Ep) 7 7 (E,Q)(EpQ)
+= Yo ya(A, B)(a = 6) APB ja) (Eas ®) (4.15)
+
+for |A| > |B].
+
+Looking at the above equations, one can see the appearance of the triplet 2, Q, Q
+instead of Q. This situation is typical for the ‘complex’ NLS-like models. Indeed, these
+models are formulated in terms of two functions g and r, which are related in physical
+applications by r = +g (bar stands for the complex conjugation). To bilinearize NLS-
+
+like equations one usually has to employ three tau-functions o, 7 and p: q = a/T,
+r = p/r with involution p = +¢ and t = 7. It was shown in the previous works by
+the author that in the dark soliton case the universal way to construct the chain (finite
+or infinite) of the tau functions ... + p> T > 0 — ... is to use the T,, shifts, 7 x Q,
+pn T,,'Q, a «x T,Q, etc, with some distinguished yz. In particular, the case of this
+section, 4 = & where & is the ‘base’ of the Miwa shifts, corresponds, as is shown in [10],
+to the the positive (classical) part of the AKNS hierarchy.
+
+Construction can be extended to introduce other sets of Miwa shifts by
+changing the ‘base’ shift parameter «. In the previous works the author used two
+sets,
+
+E, = TaT,', Ey, = T,T;’, KAR (4.16)
+
+to deal with extended hierarchies consisted of positive, E, and negative, E,
+subhierarchies.
+
+More generally, one can introduce several Miwa shifts and, hence, several systems of
+continuous flows, E Ge = ToT, to deal with multidimensional equations and hierarchies.
+
+We do not present here the corresponding identities because it seems difficult to
+select from possible variants some reasonable set of ‘ready-to-use’ formulae.
+
+
+
+Soliton Fay identities. I. Dark soliton case. 9
+
+5. Differential Fay identities.
+
+The differential Fay identities can be derived using the standard limit procedure. First
+we define the differential operator 0, by
+
+, x (TeT,' — 1). (5.1)
+
+Oy = lim
+
+EarA E —
+Then, considering, as in the case of the Miwa shifts, various ways of constructing sets X
+and Y of A, €, A and B, with \,€ ¢ A,B and taking the € > limit one can obtain from
+
+the main identity (8.2) various bilinear equations involving OQ) or its bilinear analogue,
+
+Dyu-v = (Qu) vu —u(dv). (5.2)
+We present here only the general one, that can be written for the case |A| + 1 > |B] as
+A(A, B)
+
+AQ, A) [Dy + Ag(A) = Aa(B)] [A] - OB]
+
+-S a > a Q[AA/a] Q@Bl —djaj41)5) QAAAJQB] (5.3
+acA ,
+
+where letters with overbar indicate inverse shifts,
+
+OLAX] = Ty? O[X] 5.4
+and
+1
+MA)= 5 5.5
+
+together with the Toda-like identity of the second order,
+ao QAR] Q[pA] +e? 5.6
+where c is a constant that is usually determined from the boundary conditions.
+
+From the practical viewpoint, the differential identities (5.3) are to be combined
+with the ‘algebraic’ ones, (8.2) or formulae from section 4] to present the right-hand side
+of (5.3) as a ‘physical’ combination of the tau functions 2. One can find a few examples
+
+Dy, -Q =
+
+of application of differential Fay identities in the next section.
+
+6. Applications.
+
+In this section we discuss applications of the Fay identities derived in this paper. We
+would like to note that particular cases of the formulae of the previous sections have
+already been used by the author in previous works [5} [7] |8} [9] (10, [TI], that may be
+considered as the ‘most practical’ examples.
+
+Here we focus on the models that can be viewed as extensions of the ‘classical’
+integrable models. The main feature of all equations presented below is that they are
+multidimensional, contrary to most of the ‘classical’, or integrable by means of the
+standard inverse scattering transform, models that are 2- or (1 + 1)-dimensional.
+
+
+Soliton Fay identities. I. Dark soliton case. 10
+
+6.1. Multidimensional lattices.
+
+Consider the two-parametric set of functions fre
+
+QIn¢]
+
+Jing = Pn¢ Q (6.1)
+where ‘background’ functions y,¢ are defined by
+A(n, X)
+
+Tx¥n¢ = A(X) Pre
+
+It follows from the main identity (8.2) with X — @ and Y > n¢X after the shift Tet
+that
+
+Pr = 1. (6.2)
+
+A(n, 6X) EC) QInX/€]
+Pn “O ONX] ACE, nCX/E) ©
+
+Using this equation for one element sets, X = {&},
+
+¢ =n MEG) On 6
+
+(Tx _ 1) Sng = (6.3)
+
+€EX
+
+Te-D fg =
+to substitute Q[EC] in (63) it is easy to obtain
+(Tx = 1) fre = So anex (Te = 1) fing 6.5
+éeX
+where
+
+nnex = MOXIE) IE] On /) ,
+
+AE, X/€) Q[n] O[X]
+
+Noting that ayex do not depend on ¢, one can ‘vectorize’ equation (6.5) by introducing
+
+the vector f,, defined by
+f= 0 fac € (6.7)
+eZ
+where {ec} is an arbitrary set of vectors from an arbitrary space V. Equation (65) can
+now be rewritten as
+(Tx = 1) fy, = So anex (Te - 1) fy. (6.8)
+€eX
+It is clearly seen that the simplest case of (6.8), |X| = 2, describes multidimensional
+quadrilateral lattices (QL) in V [20] [21] [22]. Thus, we have demonstrated that the
+determinants 2 provide solutions for the generalized QL equation (6.8), that can be
+viewed as a compatible system of several classical (two-dimensional) QL equations.
+Presenting dnex as
+
+Tx eb
+nex = a * (6.9)
+ur
+with
+Qin
+bne = —Pne ohn) (6.10)
+
+Og)
+
+
+Soliton Fay identities. I. Dark soliton case. 11
+
+one can conclude, after some simple manipulations with (8.2), that bye satisfies the
+equations
+
+=>
+
+Tx — 1) yc = 0 (Texjebne)bec (6.11)
+EEX
+
+that generalize the discrete Darboux equations,
+
+(Te = 1) bye = (Tebne bec (6.12)
+
+(see [20] BTL 2).
+The multidimensional QL and discrete Darboux equations were studied by various
+
+authors who obtained their Grammian- and Casorati-type determinant [23] [24], the
+
+algebro-geometric [25} |26) [27] and the soliton solutions [15} [28]. The results presented in
+
+this section can be viewed as a simplification and generalization of the Cauchy matrix
+approach elaborated in [28].
+
+6.2. Darbouxr equations.
+
+The next three examples are the differential systems, which are consequences of (5.3).
+The construction we use in this section is similar to (6.1),
+
+1
+vnc TT z!O
+
+. nec
+ne = 6.13
+f 16 C—7 Q (
+where 17, ¢ belong to an arbitrary set,
+nGEX (6.14
+and functions y,¢ are solutions of
+1 1
+Oy In Yye = Jou yee? Pn = 1. (6.15
+
+It follows from (5.3) that functions (6.13) satisfy
+
+Ondng=frhre  AusmCEX, AANFC#A) (6.16
+which means that (6.13) describe soliton solutions for the Darboux equations [29] [30].
+
+Dd
+
+.3. (1+ N)-dimensional NLS-like system.
+
+The first two examples discussed above are ‘general’ ones, in the sense that no
+restrictions are imposed on the matrices L and R determining, through (2.8), the matrices
+A which are used to construct the determinants Q . However, as can be seen from
+[5] (7, {8} (9) (LO) [11], to build solutions for the NLS-like system one has to use L and R
+that are not independent, which is a manifestation of the fact that dark solitons are
+one-parametric (contrary to the two-parametric bright ones). For example, in 11]
+L =R-!. Here, we use generalization of this condition that leads to the generalized
+NLS-like equations.
+
+Consider a fixed set of parameters
+
+M= {p1,.--, un} (6.17)
+
+
+Soliton Fay identities. I. Dark soliton case. 12
+
+and the restriction
+Tu =T, (6.18)
+with fixed « which relates L and R,
+
+Tlie (t — pH)
+
+t-kK
+
+F(L) = F(R), F(t) = (6.19)
+
+The differential Fay identity (6.3) with B = @ can be rewritten in terms of the Miwa
+shifts E as
+
+[Da + An (A )| 21a) }-2 = 7A) (E.2) (E51 Q{A)) (6.20
+acA
+where
+1 A(x, A)
+(A) = —— Ae) 21
+Ya A) (« — a)? A(a, A/a) (6
+Using this equation to calculate the derivative of Q[M/p] /Q,
+Q M Q x
+[Or + Ax(M/p) Bed = > PE; vn (6.22
+aeM/p
+where
+£2) (Ex!
+Py = Ya(M/p) SE 9) (6.28)
+and noting that
+Q(M/p] = E10 (6.24)
+
+one can present P,. as a product of fractions E¢!0/Q and constant factors. This leads
+to the closed system for the functions
+
+ae) E,2
+qu = Pu = 5 (6.25
+that can be written as
+Onn = > Qly Ey du (6.26
+vEeM/p
+On" p = > Wry Evry (6.27
+vEeM/p
+
+provided the background functions y, and " satisfy
+
+0, In Y, = —O, In, = = — (6.28
+
+veM/p
+
+Ey Pu Wu Uk
+= = — 6.29
+Pu Ey, pb-V (
+
+and are related by
+_ 1 A(«K, M)
+Pe = EM NTI
+
+= constant. (6.30
+
+
+Soliton Fay identities. I. Dark soliton case. 13
+Now we pass to the vector notation by introducing, instead of N-set M, a basis o
+
+RY
+M = {j,...,4n} > {e1,..., En} (6.31
+
+and identifying the shift E,,, with translation by e;. In new terms, system (6.26), (6.27
+can be written as
+
+= Vo aa(n)ra(n) gi(n — ea) (6.32
+a#i
+—7;(n) => da(n)ra(n) ri(m + eq) (6.33
+a#i
+where we write q; instead of q,, and use dot to indicate the derivative, q = 0,.q, ete.
+To summarize, we have demonstrated that functions defined by are solutions
+of the (1+ .N)-dimensional NLS-like system (6.32) and (6.33). To present the N,-soliton
+solutions for this model one has to rewrite formulae of this section, together with the
+
+‘evolution’ equation for the matrix A following from (5.1),
+
+O,A=A-(L—R)(L—«)7(R—«)7}, (6.34
+in the t-n notation. Omitting the details (such as using (2:8) to write the elements o:
+A, introducing exp(u;) instead of y,, etc), we present here the ‘final’ form of g; and 1;:
+det |1 + A (t,n — e;)|
+A(t, {es Gn) 6.35
+ailt,n) = 4% det]i+A(hn)| (
+det |1 +A (t,n + e;)|
+A(t, n) = re wer) eee ZA) 6.36
+ri(tm) = re det]i+A(hn)| (
+Here, A is the N, x N, matrix, A= (Aas )ee=1..Ny? with the elements
+1
+Aaa(t,n) = ———— exp {wa(t,n)}, a, 8 =1,...,Ns (6.37
+La — Rg
+
+where the pairs L, and R, belong to the same level set of the function F from (6.19):
+L,, and R, are distinct solutions of F(t) = C, for arbitrary Cy. The ‘phases’ u; and wg
+are given by
+
+uj(t,n) = uot + (u;,n) + constant (6.38
+wa(t,n) = weot + (wg, n) + constant (6.39
+with the ‘frequencies’
+N
+1 1
+Uio (6.4 0
+Hi » Hj —
+
+030 = > > 6.41
+0 Rg-k Lg-k (
+
+and the ‘space’ vectors
+
+=m (6.42
+
+afi Mi
+
+
+
+Soliton Fay identities. I. Dark soliton case. 14
+
+while the constants g{°, r{
+
+exp {(tUror — Ui, e:) } a
+gor _ OX tot i CS ion = Sou). (6.44)
+j=l
+
+Ke [i
+
+are related by
+
+In the above formulae, we use (a, b) to denote the standard scalar product of vectors @
+and b and presume that basis {e;} is orthogonal.
+
+To conclude this section we would like to comment the dark-soliton character of
+the presented solution. It is easy to see from the structure of the matrix A that for the
+vector No such that exp{(wg, 9)} is, say, positive for all 8 the elements of A(t, kno)
+tend to 0 (when & — —oo) or to the infinity (when k + +00). Thus, det |1 + A(¢, kno)|
+tends to 1 or is given by det |A(t, kno)| + O(1), which implies that
+
+u(tn)) Ll k + —oo
+gilt, kno) ~ ge { en (wrote) ks 499 (6.45)
+
+where Wiot = mn w,. Interpreting e“* as a background (it can be made usual plane
+wave by taking pure imaginary u;) one can see the typical ‘dark soliton’ picture: a
+background solution in the asymptotic regions, nontrivial behaviour in the region of
+finite n’s and a constant ‘phaseshift’, — (wor, ei).
+
+6.4. (1+2)-dimensional lattice with saturable nonlinearity.
+
+In this example we slightly modify calculations of the previous section and discuss a
+model with saturating nonlinearity.
+Consider three shifts Te, € € {,v, K} related by
+
+T,T, =T,.- (6.46
+
+The differential Fay identity (5.3) with A = {u,v} and B = 0 under restriction (6.46
+reads
+
+(0, + Ay) = = —+T,= +—“+T (6.47
+
+or, after applying Tz",
+
+Q P, Q P Q
+K Ax = A 1 t “ I 4
+(Ox + 9 Koy EQ K-p”’ Q eas
+with A, = A,({u,v}),
+1 1
+An = + . (6.49
+KR pb K—-V
+
+Here we again use notation (48), Q =T,Q and Q = T,,', while P,, are given by
+— pe (TQ) (TZ'9) p, - Uk (M2) (T!0)
+
+Pu 7 ex , “v= p ox (6.50
+In terms of new functions
+Q 129
+I=%o: r=—9 (6.51
+
+
+Soliton Fay identities. I. Dark soliton case. 15
+
+where y is determined by
+
+0, Ing = An; oo = ‘—, _ = a (6.52
+equations (6.47) and (6.48) can be written as
+
+— pg =P. Tyq+ PL Ty (6.53
+
+por =P, T,'r+P,T,'r (6.54
+where
+
+p=V(u-K)(v—k). (6.55
+
+To close this system one has to relate P, and P, with q and r. This can be done using
+the observation
+
+T,Q=T,'Q, T,'Q = T,2 (6.56)
+which leads to
+P, = —P, (Ty'q) (Tyr). (6.57)
+
+This, together with
+P,+P,=1, (6.58)
+that follows from the main Fay identity (8.2) for X = {«} and Y = {y, v} after applying
+
+the shift T1, implies
+
+1 1
+Pu 1 = (Tq) (Tr)’ Pyar (T5749) (Tyr)
+Finally, introducing the ‘time’ by d/dt = pO, and using the vector notation (as in
+the previous section) one arrives at the following result: functions q and r solve the
+hyperbolic (or NLS-like) system
+
+(6.59)
+
+(6.60)
+
+)
+(
+rn) = > ——— (6.61)
+
+where dot stands for d/dt.
+To conclude, we write the ‘final’ formulae for the N,-soliton solutions. We restrict
+ourselves with the case « = 0 (other choice, « 4 0, leads to rescaling of the time an
+
+redefinition of constant parameters). Condition (6.46) leads to
+
+v=p, R=L}, p=l. (6.62
+
+Noting that H,, = L? one can write q and r in the following form:
+u(in) det |L+ A (t, 2) P|
+det |1 + A (t, n)|
+—u(tn) det |L + A (t, 2) L-?|
+det |1 + A (t, n)|
+
+q(t,n) =e (6.63
+
+r(t,n) =e (6.64
+
+
+Soliton Fay identities. I. Dark soliton case. 16
+
+The elements of the N, x N, matrix A are given by
+
+Aaa(t,n) = con exp {wg(t,n)}, a,3=1,...,Ns (6.65
+where
+
+wa(t,n) = (Lg — Lz") t + (wg, n) + constant (6.66
+with
+
+ws =nLge+In “ 7 O3€ (6.67
+and
+
+u(t,n) = (w,n — et) + constant. (6.68
+Here, ps, € are the constant vectors
+
+(in) (0) z
+
+and 93 is the Pauli matrix diag (1, —1).
+
+7. Conclusion.
+
+The main result of this work is the set of bilinear identities that can be viewed as soliton
+analogues of the Fay identities and which, in our opinion, are useful from the practical
+viewpoint. First, they simplify the procedure of constructing soliton solutions. It has
+been demonstrated in the previous works of the author as well as in examples provided
+above that starting from (8.2), (6.3) or the formulae from section [4] one can obtain by
+simple algebra explicit solutions for a wide range of equations such as, e.g, equations from
+the NLS hierarchy [10], from the derivative NLS hierarchy [11], equations that describe
+multidimensional QL, discrete and differential Darboux equations (see examples from
+sections and [6.2) etc.
+
+Another application of the obtained Fay identities is for a search for new solvable
+models, especially in multidimensions. Two examples of apparently new equations can
+be found in sections [6.3] and [6.4] Of course, we cannot, at present, say anything about
+integrability of (6.32), (6.33) or (6.60) and (6.61). However, the fact that these systems
+admit the N-soliton solutions is an indication that they are integrable (or at least admit
+
+integrable reductions, as in the case studied in [4]). Surely, examples from sections [6.3]
+
+and do not exhaust all interesting (both from the viewpoint of integrability and
+of possible physical applications) models that can be solved by means of the identities
+discussed in this paper and we hope to find more in future.
+
+Finally, we would like to mentioned the most straightforward continuation of this
+work: to derive the Fay identities for the bright soliton case. It is interesting that usually
+the dark solitons are considered as more ‘difficult’ objects than the bright ones. This
+is probably because of the fact that to derive them in the framework of the inverse
+scattering transform one has to study the spectral problems with nonvanishing at the
+
+
+Soliton Fay identities. I. Dark soliton case.
+
+17
+
+infifnity potentials, which indeed complicates the involved mathematics. However, in
+the framework of the direct approach, the situation can be inverted. For example, the
+
+structure of the o-7-p triplet for the complex models turns out to be more complicated
+in the bright soliton case than the Q-Q-2 construction that appears in section [4] This
+and other questions related to the bright soliton Fay identities will be discussed in the
+
+forthcoming paper.
+
+Appendix A. Proof of proposition [I]
+
+The aim of this section is to prove equations (2.9) and (2.10), which are straightforward
+
+consequences of (2.8). Considering the
+
+et
+
+TeQ(A)
+= det
+= det
+= det
+
+=A
+
+1+A(L—Q)(R-O)"|
+1+(L—Q)A(R-¢) "|
+1+ (A(R—¢) +|£)(al) (R-¢) "|
+1+A+|£)(a|(R—¢) "|
+
+det |1 + G(A)| £) (al (R— 6) "|.
+
+The last expression, together with
+
+det 2 +|u)(u| =1+(vlu)
+
+leads to (2.9).
+
+In a similar way,
+
+TeIOQ(A) = det [1+ A(R—¢)(L— 0)" |
+
+= det |1+(L-¢) 'A(R-6)|
+= det 1+ (L— 0)" ((L- QA — | £) (al)|
+= det [1+ A—(L— 0)" | £)(al|
+
+= (A) det [1 — G(A) (L = 07" | 6)(al|
+
+which implies (2.10).
+
+Appendix B. Proof of proposition [2]
+
+To prove (2.13), we use (2.9)
+
+and (2.10) in the following form
+
+TeQ(X) = Q(X) [1 + (2|(R — ¢)*G(X)| 2]
+Te A(Y) = ACY) [1 = (yIG(Y)(L = 6)“ €)]
+
+where
+
+(2| = (alHx,
+
+(y| = (alHy
+
+first of them, one can write
+
+(A.3)
+
+
+Soliton Fay identities. I. Dark soliton case. 18
+
+and present
+(T.Q(X)) (Te'Q(Y))
+
+Fav(Q) = TORY)
+= [1- WIG = 78) [1+ @R-Q'6EOI4)] (BA
+
+Fxy(0) = 14+ (ylG(Y) Dxy(C)G(X)| ¢). B.5
+To do this we use, when necessary,
+
+(| = (y|HxHy" = (y|G(Y) (1+ Y) Hx Hy" B.6
+and
+
+|£) = (14+ X) G(X)| £2). B.7
+Thus,
+
+Dxy(G) = (L+Y)HxHy! (R=) § = (L=() "(1 +X)
+—(L=g)* |e) (al (R=). (B.8)
+Replacing YHxHy" with X one arrives at
+Dxy(G) = HxHy! (R= 6) * = (L= 0)!
++(L—G) 1 [(L-Q)X-X(R—)—Jé)(el](R-G)) (B9)
+Noting that the expression inside the square brackets vanishes by virtue of (2.8) one can
+rewrite (B.5) as
+Fry(Q) = 1+ (ylG(Y)Pxy(C)G(X)| ) (B.10)
+which ends the proof of (2.13).
+
+References
+
+1] Mumford D, 1984, Tata lectures on Theta II. (Boston, Basel, Stuttgart: Birkhauser).
+
+2] Vekslerchik V E, 1999, J. Phys. A: Math. Gen. , 32, 4983-4994.
+
+3] Vekslerchik V E, 2000, Finite-genus solutions for the Hirota’s bilinear difference equation. Preprint
+nlin.SI/0002005
+
+4] Pritula G M and Vekslerchik V E, 2010, J. Phys. A: Math. Gen. , 43, 365203.
+
+5] Vekslerchik V E, 2013, J. Phys. A: Math. Gen. , 46, 055202.
+
+6] Fay J, 1973, Theta functions on Riemann surfaces. Lecture Notes in Mathematics, 352 (Berlin,
+Heidelberg: Springer).
+
+7| Vekslerchik V E, 2005, J. Nonlin. Math. Phys., 12, 409-431.
+
+8] Pritula G M and Vekslerchik V E, 2011, J. Nonlin. Math. Phys., 18, 443-459.
+
+9] Vekslerchik V E, 2011, Nonlinearity , 24, 1165-1175.
+
+[10] Vekslerchik V E, 2012, J. Nonlin. Math. Phys., 19, 353-372.
+
+[11] Vekslerchik V E, 2013, J. Nonlin. Math. Phys., 20, 495-513.
+
+[12] Kasman A and Gekhtman M, 2001, J. Math. Phys. , 42, 3540-3551.
+
+[13] Gekhtman M and Kasman A, 2002, Theor. Math. Phys., 133, 1498-1503. Translated from Teor.
+Mat. Fiz., 133, 211-217.
+
+[14] Gekhtman M and Kasman A, 2006, J. Geom. Phys., 56, 282-309.
+
+
+
+Soliton Fay identities. I. Dark soliton case. 19
+
+15
+16
+17
+18
+19
+20
+21
+22
+
+23
+24
+25
+
+26
+27
+28
+29
+
+30
+
+Nijhoff F, Atkinson J, Hietarinta J, 2009, J. Phys. A: Math. Gen. , 42, 404005.
+
+Dimakis A and Miiller-Hoissen F, 2010, SIGMA, 6, 055.
+
+Dimakis A and Miiller-Hoissen F, 2010, Inverse Problems , 26, 095007.
+
+Hirota R, 1981, J. Phys. Soc. Japan, 50, 3785-3791.
+
+Miwa Tetsuji, 1982, Proc. Jap. Academy, Ser. A, Mathematical Sciences, 58, 9-12.
+
+Bogdanov L V and Konopelchenko B G, 1995, J. Phys. A: Math. Gen. , 28, L173-L178.
+
+Doliwa A and Santini P M, 1997, Phys. Lett. A, 233, 365-372.
+
+Bobenko A I and Suris Yu B, 2008, Discrete Differential Geometry: Integrable Structure. Graduate
+
+Studies in Mathematics, 98 (Providence, Rhode Island: American Mathematical Society)
+
+Liu Q P and Manas M, 1998, Phys. Lett. A, 239, 159-166.
+
+Willox R, Ohta Y, Gilson C R, Tokihiro T, Satsuma J, 1999, Phys. Lett. A, 252, 163-172.
+
+Akhmetshin A A, Vol’vovskii Yu S, Krichever I M, 1999, Proc. Steklov Inst. Math., 225, 16-39.
+
+Translated from Trudy Mat. Inst. Steklova, 225, 21-45.
+
+Doliwa A, 2007, J. Geom. Phys., 57, 1171-1192.
+
+Doliwa A, 2010, J. Geom. Phys., 60, 690-707.
+
+Atkinson J and Nijhoff F, 2010, Comm. Math. Phys., 299, 283-304.
+
+Darboux G, 1896, Lecons sur la théorie générale des surfaces et les applications géométriques du
+calcul infinitésimal. IV, Livre VII, Chapitre XII, §1041 (Paris: Gauthier-Villars et Fils).
+
+Zakharov V E and Manakov S V, 1985, J. Sov. Math., 31, 3307-3316. Translated from Zap. Nauch.
+Sem. LOMI, 1984, 133, 77-91.
+

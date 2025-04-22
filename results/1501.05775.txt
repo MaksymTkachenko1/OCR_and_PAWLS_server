@@ -1,0 +1,1420 @@
+9
+
+1501.05775v7 [cs.DM] 24 May 201
+
+‘arXiv
+
+Mathematical Programming A manuscript No.
+(will be inserted by the editor)
+
+An O(n? logn) algorithm for the weighted stable set
+problem in claw-free graphs
+
+Paolo Nobili - Antonio Sassano
+
+Dedicated to the memory of Manfred Padberg
+
+Abstract A graph G(V,E) is claw-free if no vertex has three pairwise non-
+adjacent neighbours. The Maximum Weight Stable Set (MWSS) Problem in a
+claw-free graph is a natural generalization of the Matching Problem and has been
+shown to be polynomially solvable by Minty and Sbihi in 1980. In a remarkable
+paper, Faenza, Oriolo and Stauffer have shown that, in a two-step procedure, a
+claw-free graph can be first turned into a quasi-line graph by removing strips con-
+taining all the irregular nodes and then decomposed into {claw, net}-free strips
+and strips with stability number at most three. Through this decomposition, the
+MWSS Problem can be solved in O(|V|(|V| log |V| + |£|)) time. In this paper, we
+describe a direct decomposition of a claw-free graph into {claw, net}-free strips
+and strips with stability number at most three which can be performed in O(|V|*)
+time. In two companion papers we showed that the MWSS Problem can be solved
+in O(|E|log|V|) time in claw-free graphs with a(G) < 3 and in O(\V| JE) time
+in {claw, net}-free graphs with a(G) > 4. These results prove that the MWSS
+Problem in a claw-free graph can be solved in O(|V|? log |V|) time, the same com-
+plexity of the best and long standing algorithm for the MWSS Problem in line
+graphs.
+
+Keywords claw-free graphs - quasi-line graphs - stable set - matching
+
+1 Introduction
+
+The Mazimum Weight Stable Set (MWSS) problem in a graph G(V, E) with node-
+weight function w : V > # asks for a maximum weight subset of pairwise non-
+adjacent nodes. In a remarkable theoretical effort, Faenza, Oriolo and Stauffer [3]
+have proposed an elegant decomposition approach to the solution of the MWSS
+problem when G is claw-free. The approach is based on a two-step decomposition
+
+P. Nobili
+Dipartimento di Ingegneria dell’Innovazione, Universita del Salento, Lecce, Italy
+
+A. Sassano
+Dipartimento di Ingegneria Informatica, Automatica e Gestionale “Antonio Ruberti”, Univer-
+sita di Roma “Sapienza”, Roma, Italy
+
+
+2 Paolo Nobili, Antonio Sassano
+
+technique and produces a family of strips, a structure analogous to that introduced
+by Chudnowsky and Seymour [2] in their characterization of quasi-line graphs. In
+the first step the procedure in [3] removes a strip “around” each irregular node, as
+to end up with a quasi-line graph G. In the second step it performs the so called
+ungluing operation to a special class of cliques of G, the articulation cliques. The
+algorithm proceeds by solving the MWSS problem on each strip, replacing the
+strips by simple “gadgets” and, finally, re-assembling the gadgets to produce a
+line graph H with the property that any MWSS of H “corresponds” to (and can
+be easily turned into) a MWSS of G. Several steps of the algorithm sketched
+above have a bottleneck time complexity of O(|V||£|). In particular, finding the
+articulation cliques, turning a claw-free graph into a quasi-line graph, solving the
+MWSS problem in the {claw, net}-free strips and in the claw-free strips with
+stability number not greater than three have that complexity.
+
+In a series of papers we have shown how to perform more efficiently all the bottle-
+neck steps. In particular, in [11] an algorithm is described with O(|E|log|V|) time
+complexity to solve the problem in claw-free graphs with a(G) < 3 and in [10]
+we have proposed a O(|V| VIE) algorithm to solve the MWSS problem in {claw,
+net}-free graphs with a(G) > 4. This final paper addresses the MWSS problem in
+a claw-free graph G(V, E) by means of a slightly different ungluing operation. We
+first construct a special maximal stable set S of G which is used to guide the de-
+composition; second, we perform, directly on the claw-free graph G, our ungluing
+of a proper superset of the family of articulation cliques (S-articulation cliques)
+that can be identified more easily and that also produces a decomposition of G
+into {claw, net}-free strips and strips with stability number at most three. Finally
+we resort to the same procedure proposed by Faenza, Oriolo and Stauffer to solve
+the MWSS problem in a suitable line graph. The dominant complexity of our algo-
+rithm is that of the fastest algorithm to date which solves the MWSS problem in a
+line graph. In turn, the latter can be derived from any algorithm for the weighted
+matching problem on a graph H with complexity O(mnlogn) (e.g. [1], [6], [5]),
+where m is the number of edges and n is the number of nodes of H. In fact, if H is
+the root graph of G(V, £) then m is O(|V|) and n (number of cliques in a Krausz
+partition of G) is again O(|V|). This implies an O(|V|? log |V]|) algorithm for the
+MWSS problem in the line graph G. The existence of an algorithm with such a
+complexity for claw-free graphs was conjectured by Manfred Padberg in 1983.
+
+2 Notation and Background
+
+For each sub-graph H of a graph G(V, E) we denote by V(#) the set of nodes of
+H and by E(f) the set of edges of H. Moreover, if W C V we denote Ng(W)
+(neighborhood of W in G) the set of nodes in V \ W adjacent in G to some node
+in W. If W = {w} we simply write Ng(w). We denote by Ng[W] and Ng[w] the
+sets Nc(W)UW and Ng(w)U {w} (closed neighborhood of W and w in G). When
+the graph is unambiguous we simply write N(W) and N[W]. If no edge in E has
+exactly one end-node in W and W is minimal with this property we say that W
+is (or induces) a connected component of G. We also say that two nodes u and v
+are distinguished by a subset T C V if u € T and v ¢ T or vice versa.
+
+
+Weighted stable set problem in claw-free graphs 3
+
+A clique is a complete subgraph of G induced by some set of nodes kK C V.
+With a little abuse of notation we also regard the set K as a clique and, for
+any edge uv € E, both wv and {u,v} are said to be a clique. A node w such
+that N(w) is a clique is said to be simplicial. A claw is a graph with four nodes
+w,2x,y, 2 with w adjacent to x,y, z and x,y, z mutually non-adjacent. To highlight
+its structure, it is denoted as (w: x,y,z). A Py is a (chordless) path induced by k
+nodes wu1,w2,...,uk and will be denoted as (ui,..., ux). A set T C V is complete
+(anticomplete) to a set W C V\T if and only if N(T)NW = W (N(T)NW = 9).
+With a little abuse of notation we regard a node v € V as the singleton set T = {v}
+and say that v is complete/anticomplete to W (W is complete/anticomplete to
+v). Observe that if W is empty then T is both complete and anticomplete to W.
+A net (#1, 12,03 : y1,y2,y3) is a graph induced by a clique T = {1, 2, x3} and
+three mutually non-adjacent nodes {y1, y2, y3} with N(yi) NT = {ai} (i = 1, 2,3).
+The clique T is said to be a net triangle.
+
+A node v € V is said to be regular if its closed neighborhood can be covered by
+two (not necessarily distinct) maximal cliques; moreover, if such a cover is unique
+the node is said to be strongly regular. A clique Q is crucial for a node u € Q if
+wu is strongly regular and Q belongs to the unique cover of N[u]. A graph G(V, E)
+is quasi-line if all of its nodes are regular. Each line graph is a quasi-line graph
+and each quasi-line graph is a claw-free graph. A 5-wheel Ws = (0: v1,...,U5) is
+a graph consisting of a chordless cycle R = (v1,...,5) called rim of Ws and a
+node & (hub of Ws) adjacent to every node of R. Observe that the hub of Ws; is
+not regular and hence a quasi-line graph does not contain 5-wheels.
+
+Let S be a stable set of a claw-free graph G(V,E). Any node s € S is said to
+be stable; any node v € V \ S satisfies |N(v) 1 S| < 2 and is called superfree if
+|N(v) A S| = 0, free if |N(v)N S| = 1 and bound if |N(v)N S| = 2. Observe that,
+by claw-freeness, a bound node b cannot be adjacent to a node u € V \ S unless b
+and u have a common neighbor in S. For each node u € V \ S$ we denote by S(u)
+the set of nodes in S$ adjacent to wu. For each T C S we denote by F(T) the set of
+free nodes with respect to S which are adjacent to some node t € T. If T = {t}
+we simply write F(t).
+
+3 Wings, Similarity and Weakly Normal Cliques
+
+A bound-wing defined by {s,t} C S (s ¥ t) is the set W?(s,t) = {ue V\S:
+N(u)NS = {s,t}}. A free-wing defined by the ordered pair (s,t) (s,¢ € S) is the
+set WF'(s,t) = {u € F(s) : N(u)M F(t) 4 O}. Observe that, by claw-freeness,
+any bound node is contained in a single bound-wing. On the other hand, a free
+node can belong to several free-wings. Moreover, while W?(s,t) = W(t, s), we
+have W''(s,t) 4 W*(t,s) in general (they could both be empty). By slightly
+generalizing the definition due to Minty [9], we call wing defined by (s,#) (s,t € S)
+the set W(s,t) = W?(s,t) UW*(s,t) UW" (t,s) if non-empty. We also say that
+8s (t) defines W(s,t). Observe that W(s,t) = W(t,s). The nodes s and ¢ are said
+to be the extrema of the wing W(s,t).
+
+Following Schrijver [12] we say that two nodes u and v in V\ S are similar (u ~ v)
+if N(u)NS = N(v)NS and dissimilar(u % v) otherwise. Clearly, similarity induces
+an equivalence relation on V \ S and a partition in similarity classes. Similarity
+
+
+4 Paolo Nobili, Antonio Sassano
+
+classes can be bound, free or superfree in that they are entirely composed by nodes
+that are bound, free or superfree with respect to S. Bound similarity classes are
+precisely the bound-wings defined by pairs of nodes of S, while each free similarity
+class contains the (free) nodes adjacent to the same node of S'. Let Gp(F(S), Er)
+be the graph with edge-set Ep = {uv € E: u,v € F(S),u & v} (free dissimilarity
+graph). A connected component D of Gr is said to be an F-clique defined by S' if
+it induces a maximal clique in G. Observe that an F-clique intersects two or more
+similarity classes; in the first case it is said to be trivial. The family of the F-cliques
+defined by S in G is denoted by F(S). Let Z be the set of strongly regular nodes
+in S. For each s € Z, let (Cs,Cs) be the unique pair of maximal cliques covering
+N{s]. The family C(S) = {(Cs,Cs) : s € Z} is said to be the S-cover of G. With
+a little abuse of notation, we also say that some clique C belongs to the S-cover
+
+C(S) if C € {C.,Cs} for some pair (Cs,Cs) € C(S).
+
+Fig. 1: Stable (black), free (double circle) and bound
+nodes. Wings and F-cliques.
+
+In the graph shown in figure 1, S = {1,2,3}, F(S) = {5,6,7,8,9} and 3 defines two wings.
+Moreover, W(1,3) = {4,6,8}, W?(1,3) = {4}, W¥(2,3) = {7,9}, W"(3,2) = {5,8} and
+W (2,3) = {5,7, 8,9}. The dissimilar pairs of free nodes (edges of the free dissimilarity graph)
+are marked in red, F, = {6,7,8} is a non-trivial F-clique and Fz = {5,9} is a trivial F-clique.
+Finally, the unique pair of maximal cliques covering N[3] is C3 = {3,4} and C3 = {3,5, 8}.
+
+Two non-adjacent nodes u,v € N(Q) are said to be Q-distant if N(u) MN N(v) A
+Q = 0 and Q-close otherwise. A maximal clique Q is normal [8] if it has three
+independent neighbors that are mutually Q-distant and weakly normal if every
+two non-adjacent nodes in N(Q) are Q-distant.
+
+Lemma 3.1 Let Q be a maximal clique in a claw-free graph G.
+
+(i) Q is normal if and only if it contains a net triangle;
+(ii) if Q is normal and every node in Q is regular then Q is weakly normal;
+(iii) af Q is weakly normal then every node in Q is regular.
+
+Proof. To prove (i) assume first that Q is normal and let x,y,z be three inde-
+pendent and Q-distant nodes in N(Q). Let 2’, y’,2’ € Q be neighbors of 2, y, z,
+respectively. Then (2’,y’, 2’: z,y,z) isa net and {z’,y’, z’} is a net triangle in Q.
+On the other hand, if (2’,y’, 2’: z,y, 2) is a net with {2’,y’, 2’} C Q we claim that
+x,y,z are mutually Q-distant. Otherwise, without loss of generality, assume that
+x and y have a common neighbor gq € Q. But then (q: 2, y, 2’) is a claw in G, a
+contradiction. Statement (ii) have been proved in [8] (Theorem 12.4.5, Claim 4).
+
+
+Weighted stable set problem in claw-free graphs 5
+
+Finally, to prove (iii) observe that if Q is weakly normal then, for any node u € Q,
+Q and N(u) \ Q are two cliques covering N[u]. a
+
+In the graph of figure 1 the clique {6,7,8} is normal while {2,7,9} is weakly normal but not
+normal.
+
+Theorem 3.1 Let G(V,E) be a claw-free graph and S a maximal stable set of
+G. Then a connected component of Gr intersecting three or more free similarity
+classes induces a maximal clique in G and hence is a non-trivial F-clique.
+
+Proof. We first claim that the nodes of any chordless path P in Gr connecting
+two dissimilar nodes u,v belong only to the similarity classes of u and v. In fact,
+two consecutive nodes of P necessarily belong to different classes. If a node in a
+third class existed in P we would necessarily have three consecutive nodes x, y, z
+of P in three different classes. But then (y : S(y),z,z) would be a claw in G,a
+contradiction. Suppose now that a connected component X of Gp, intersecting
+three or more similarity classes, is not a clique in G and let u, z € X be two non-
+adjacent nodes in G. Suppose first that S(u) and S(z) are two distinct nodes of
+S and, consequently, that u % z. Let v € X be a node with S(v) ¢ {S(u), S(z)},
+it exists since we assumed that X intersects more than two similarity classes.
+Let Puy and Pyz be chordless paths connecting u to v and, respectively, v to z
+in Gp. By the above claim, Py, contains only nodes in the similarity classes of
+u and v, while P,, contains only nodes in the similarity classes of v and z. Let
+Wuz be the walk connecting u to z obtained by chaining Py,» and Py, and let
+Puz be any chordless path connecting u to z whose nodes belong to W,z. Since
+uz ¢ E, Puz contains at least one node in the similarity class of v and hence
+contains nodes in three different similarity classes, contradicting the hypothesis
+that Puz is chordless. It follows that u and z belong to the same similarity class.
+Moreover, any two dissimilar nodes in X are adjacent in G. Let v € X be a node
+with S(v) 4 S(u) = S(z). It follows that wv, vz € E and hence (v: S(v),u, z) isa
+claw, a contradiction. Hence X is a clique in G. To prove that it is also maximal,
+assume by contradiction that there exists some node u € Ng(X) complete to X.
+The node u is not free for, otherwise, it would belong to X and is not stable since
+X intersects more than one similarity class. It follows that u is bound and adjacent
+to two nodes s,t € S'. Moreover, there exists some node z € N(X)NS with z # s,t.
+But then, for each node x € XN N(z), (uw: 8,t,x) is a claw in G, a contradiction.
+The theorem follows. Oo
+
+Theorem 3.2 Let G(V,E) be a claw-free graph and S a maximal stable set. A
+weakly normal clique Q of G with QOS = 0 belongs to F(S).
+
+Proof. Suppose that there exists a bound node v € Q. Let W(s,t) be the wing
+containing v. Both s and t belong to N(Q) and are adjacent to the node v € Q.
+But this contradicts the assumption that Q is weakly normal, since s and t are
+non-adjacent. It follows that Q contains only free nodes, each one of them adjacent
+to some node in S, so S’ = N(Q)NS #4 0. We have that S’ contains at least two
+nodes, since otherwise the unique node in S’ would be complete to Q, contradicting
+its maximality. It follows that Q induces a complete multi-partite subgraph of Gr
+and hence is contained in some connected component C of Gr. If Q = C then it
+belongs to F(S) and the theorem follows. Otherwise there exists a node « € C\Q
+adjacent to some dissimilar node y € Q. But then x and S(y) are non-adjacent
+nodes in N(y) \ Q, contradicting the assumption that Q is weakly normal. oO
+
+
+6 Paolo Nobili, Antonio Sassano
+
+4 Ungluing and S-articulation cliques
+
+In [3] Faenza et al. define the concept of ungluing of a clique (partition clique)
+into spikes and a decomposition operation of a quasi-line graph based on the
+ungluing of a special family of weakly normal cliques called articulation cliques. A
+maximal clique Q is an articulation clique if it is crucial for each node u € Q. In [3]
+(Lemma 3.10) it was shown that in a quasi-line graph a maximal clique containing
+a net triangle is an articulation clique. In this section we apply a slightly modified
+decomposition operation (that we keep calling ungluing) to the more general class
+of claw-free graphs and to a different sub-family of weakly normal cliques, properly
+containing the articulation cliques. To this purpose we first introduce the concept
+of canonical stable set.
+
+Definition 4.1 (Canonical stable set) Let G(V, E) be a connected claw-free graph.
+A maximal stable set S of G with the property that, for each s € S, F(s) induces
+a clique in G is said to be canonical. i
+
+The stable set S = {v1, v2, v3} in figure 1 is canonical. In Section 5 we will show
+that a canonical stable set always exists and can be efficiently found. Hence, in
+what follows we assume that a connected claw-free graph G(V, E) with a(G) > 4
+and a canonical stable set S' of G are given. We let C = C(S) be the S-cover of G
+and F = F(S) the family of F-cliques.
+
+Definition 4.2 (S-articulation clique) The family of S-articulation cliques S is
+obtained from CUF by removing:
+
+(i) any clique Q which is not weakly normal;
+(ii) any pair of weakly normal cliques Q, K such that N(QNK)Z(QUK). a
+
+We now introduce the concepts of rigid (soft) edges and rigid structure and describe
+our new definitions of ungluing, spike and strip.
+
+Definition 4.3 (Soft and rigid edges, rigid structure) An edge uv € E is soft if
+u and v are distinguished by some clique Q € S or N(u)N N(v) is a clique in G.
+An edge which is not soft is said to be rigid in G. Let Ep C E be the set of rigid
+edges of G. The graph Gr(V,EpR) is said to be the rigid structure of G and an
+induced subgraph G[U] (U C V) is said to be rigid in G if Gr[U] is connected, soft
+in G otherwise. Oo
+
+Definition 4.4 (Ungluing, spike, strip) Let Gr be the rigid structure of G. The
+ungluing of G is the graph Gs(V, Es) obtained by removing any edge uv belonging
+to some Q € S and such that u and v belong to different components of Gr. For
+each clique Q € S, any connected component K C Q of Ggs{[Q] is said to be a
+spike of Q. We denote by K the family of all the spikes and call strip a connected
+component of Gs containing at most two spikes. a
+
+The main result of this section is the following.
+
+Theorem 4.1 Every connected component of Gg is a strip. a
+
+
+Weighted stable set problem in claw-free graphs 7
+
+The rest of the section is devoted to the proof of the above theorem. In partic-
+ular, we first prove some properties of spikes and S-articulation cliques; then we
+introduce a new graph GT and prove that such a graph is claw-free and that its
+regular connected components are net-free; moreover, we show that every irregu-
+lar connected component C of Gs is a strip with a(C) < 3 and, finally, that each
+regular connected component of Gg is a strip.
+
+Lemma 4.1 The family of articulation cliques of G is contained in S.
+
+Proof. Let Q be an articulation clique of G. Q is weakly normal since, otherwise,
+a node u € Q would exist with N(w) \ Q not a clique. Moreover, by Theorem 3.2,
+Q is contained either in F or contains some stable node s € S. In the latter case,
+since Q is an articulation clique we have that s is strongly regular and hence
+Q belongs to C. If Q does not belong to S, then there exists a weakly normal
+clique K with the property that N(QN K) Z QUK. Let w be a node in QN K
+with N(w) Z QUK. Let Q be a maximal clique containing N(w) \Q and K
+be a maximal clique containing N(w) \ K. Then we have N(w) C QUQ and
+N(w) C KUK with Q 4 K and K # Q, contradicting the assumption that Q is
+an articulation clique. i
+
+Lemma 4.2 A spike K € K intersecting some clique Q € S is contained in Q.
+
+Proof. Assume that there exist nodes u,v € K with u € Q and v ¢ Q. Since Gr[K]
+is connected, there exists in G[K] a path P = (u = v1,...,v; = v) composed
+of rigid edges. Let vj be the first node of P not in Q (possibly vj = vi). We
+have that the nodes v;—1,v; are distinguished by Q, so the edge vj—10; is soft, a
+
+contradiction. ia
+
+The spikes produced by the ungluing of articulation cliques in quasi-line graphs as
+described by Faenza et al. ([3]) are disjoint cliques in G. Our extended definition
+of ungluing preserves this property.
+
+Lemma 4.3 Two spikes in K have empty intersection.
+
+Proof. Let K; be a spike of Q; € S (i = 1,2) and assume, by contradiction, that K1
+and Ko are distinct and have non-empty intersection. By Lemma 4.2 Q: contains
+Ke. But then Ky and Ke are both spikes of Qi with non-empty intersection, a
+contradiction. ia
+
+The graph G in figure 2 contains the articulation cliques {4,5,6,7,8}, {1,2,3}, {1,6},
+{10, 11,12}. The canonical stable set S = {3,8, 10} defines the trivial F-clique {1,6} and the
+cliques of C: C3 = {1, 2,3}, C3 = {3, 4,5}, Cs = {4, 5,6, 7, 8}, Cs = {8, 9, 11}, Cio = {7, 9, 10},
+Cio = {10, 11,12}. The clique C3 (red) is not weakly normal and hence does not belong to
+the family S of S-articulation cliques. All the other cliques of F UC are S-articulation cliques.
+The rigid edges are marked in red. The graph in figure 3 is the ungluing of G as defined in [3]
+with respect to the articulation cliques. The graph in figure 4 is the ungluing of G as defined
+in this paper. Note that the two ungluing operations applied to the same clique {10, 11, 12}
+produce different results.
+
+Lemma 4.4 If a node v € V belongs to more than two distinct weakly normal
+cliques in F UC then none of them is a S-articulation clique.
+
+
+8 Paolo Nobili, Antonio Sassano
+
+Fig. 2: Articulation cliques, S-articulation cliques and rigid
+edges
+
+©
+
+©
+
+Fig. 4: Ungluing of S-articulation cliques
+
+Proof. Assume by contradiction that there exist three distinct weakly normal
+cliques Qi, Q2,Q3 € FUC with v € Q1NQ2NQ3 and Q3 € S. Since Qi and Qe
+are distinct and maximal, there exist nodes x € Qi \ Q2 and y € Q2 \ Qi which
+are non-adjacent, with {x,y} C N(v). The nodes x and y cannot both belong to
+the clique Q3; hence, without loss of generality, we can assume y € Q2 \(Q1UQ3).
+But then we have v € Q1NQ3 and N(v) Z Qi UQs, contradicting the assumption
+that Q3 belongs to S. ia
+
+Definition 4.5 (Lifting and lifting nodes, extension) Let Gs be the ungluing of
+G and K be the family of spikes defined by S. The graph Gt (Vt, E*) obtained
+from Gs by adding the nodes L = {qx : K € K} and making each qx complete
+to K is said to be the lifting of G and the nodes in L are said to be the lifting
+nodes of Gt. Finally, the stable set St = SU(L\ N(S)) of Gt is said to be the
+extension of S in GT. ia
+
+
+Weighted stable set problem in claw-free graphs 9
+
+Observe that, by construction, the lifting nodes are simplicial in G*. In what fol-
+lows we will denote by N*(K) (N*[K]) the neighborhood (closed neighborhood)
+of some set K in G*. If K is the singleton u we will simply write N+ (u) (Nt [u]).
+
+Fig. 5: A claw-free graph G with a stable set S and
+their lifting and extension
+
+In the first graph G shown in figure 5, the stable set S = {3,4} is canonical. The family
+S contains the cliques C3 = {1,2,3} and Cy = {4,5,6}. The family K contains the spikes
+Kz = {1}, Kg = {2,3}, Ko = {4,5} and Kio = {6}. The second graph is the lifting G+ of G
+with lifting nodes L = {7,8,9, 10}. The stable set St = {3,4,7,10} is the extension of S.
+
+Lemma 4.5 Jf wu and wv are edges in Es while uv ¢ Es then uv does not belong
+to E.
+
+Proof. Assume, by contradiction, that uv belongs to E \ Eg. It follows that the
+edge uv is soft and there exists some (maximal) clique Q € S containing u and
+v in different spikes. The node w does not belong to Q since, otherwise, either
+wu or wv would not belong to Es. Hence, there exists some node w € Q with
+ww ¢ E. It follows that N(w)M N(v) is not a clique in G and, by Definition 4.3, u
+and v are distinguished by some clique Q;, € S. Without loss of generality, we can
+assume u € Q, and v ¢ Qn. The node w belonging to N(QN Qp,) must belong to
+Qn since, otherwise, N(QN Qn) Z QU Q», and the assumption that both Q and
+Qn are S-articulation cliques would be contradicted. But then the nodes u and
+w belong to the same spike K C Q, with KNQ #0 and K ¢Z Q, contradicting
+Lemma 4.2. The lemma follows. ia
+
+Lemma 4.6 The graph G* is claw-free.
+
+Proof. Assume, by contradiction, that there exists a claw (w : 2,y,z) in G*.
+Observe that w is not a lifting node (since it is not simplicial). Moreover, by
+Lemma 4.3, the node w belongs to at most one spike and hence |{a,y, z} NL| < 1.
+If {x,y,z} NL = 0 we have, By Lemma 4.5, xy, yz,xz ¢ E and hence (w: 2, y, z)
+
+
+10 Paolo Nobili, Antonio Sassano
+
+is a claw in G, a contradiction. If, on the other hand, |{x,y,z}M Z| = 1 then,
+without loss of generality, we can assume z € L. Let K be the spike complete to
+z and let Q € S be a S-articulation clique containing K. The nodes x and y do
+not belong to K since they are non-adjacent to z and do not belong to a different
+spike of Q since they are adjacent to w in Gg. It follows that they belong to
+Ne(Q). Moreover, by Lemma 4.5, we have xy ¢ E. But then w € Q is a common
+neighbor of two non-adjacent nodes in Ng(Q), contradicting the assumption that
+Q is weakly normal in G. The theorem follows. ia
+
+Every regular connected component of G* is a quasi-line graph. The following
+lemma shows that it is also net-free.
+
+Lemma 4.7 Every regular connected component C of Gt is net-free. ia
+
+To prove the above lemma we first need some technical results.
+
+Lemma 4.8 Let Q be a maximal clique in G. If Q is a normal clique in GT
+contained in a regular connected component then it is a S-articulation clique in G.
+
+Proof. Since Q is normal in G*, by (i) of Lemma 3.1 there exists a net (a1, 2,03 :
+y1,y2;y3) in G* with a1,22,23 € Q. Moreover, by (ii) of Lemma 3.1, Q is also
+weakly normal in G* and, by [3] (Lemma 3.10), it is an articulation clique in G*.
+
+Claim (i). The clique Q is weakly normal in G.
+
+Proof. Assume, by contradiction, that there exist non-adjacent nodes v1,v2 €
+Ng(Q) both adjacent to some node u € Q. If viu € E \ E* let 1 € L be the
+lifting node adjacent to u in Gt, otherwise let o; = v1. Analogously define 62.
+Observe that 01 4 v2. This is clear if 0) = v1 or U2 = v2. If both v1 and t2 belong
+to L they are distinct since v; and v2 are not adjacent in G and hence belong
+to different spikes. In any case 0; and U2 are non-adjacent nodes in N +(u) \Q,
+contradicting the assumption that Q is weakly normal in G*. The claim follows.
+End of Claim (i).
+
+Claim (ii). For each node u € Q which does not belong to a S-articulation clique
+in G we have that Q is crucial for u in G.
+
+Proof. If u is simplicial then Q is trivially crucial for u, hence assume that u is
+not simplicial. First, we show that if Q is not crucial for u then it cannot belong
+to all the pairs of maximal cliques covering Ng[u]. Otherwise, there exist in G
+maximal cliques Q’ # Q” such that Ng[u] C (QU Q’) and Neg[u] C (QUQ”).
+Since Q’ 4 Q” are maximal cliques, it follows that both contain wu and there exist
+non-adjacent nodes v’ € Q’ \Q” and v” € Q” \ Q’. But then v’ € Ne[u] \Q” and
+vo” € Ng[u] \Q’ must both belong to Q, a contradiction. Hence, if Q is not crucial
+for u, there exist in G maximal cliques Q’,Q” #4 Q such that Ng[u] C (Q’ UQ”).
+Since Q is an articulation clique in G* then either Q’ or Q” (say Q’) is not a clique
+in G*. Hence Q’ contains two nodes v and z which belong to different spikes of a
+S-articulation clique Q. But then, by Lemma 4.5, uv € E \ Et or uz € E\ Et,
+contradicting the assumption that u does not belong to a S-articulation clique.
+The claim follows.
+
+End of Claim (ii).
+
+By Claim (i) and Theorem 3.2, Q is either contained in F or contains some stable
+node s € S. In this latter case, we claim that s is strongly regular and hence, by
+
+
+
+Weighted stable set problem in claw-free graphs 11
+
+definition of S-cover, Q belongs to C. In fact, if s belongs to some S-articulation
+clique in G then, by definition, s is strongly regular; on the other hand, if s does
+not belong to a S-articulation clique then, by Claim (ii), Q is crucial for s in G
+and, again, s is strongly regular. It follows that Q belongs to F UC.
+
+Assume that Q is not a S-articulation clique. Hence there exists, by Definition 4.2,
+a weakly normal clique Q € FUC such that Ng(QNQ) Z (QUQ). Observe that also
+Q is not a S-articulation clique. Moreover, no S-articulation clique Q; contains
+any node u € QNQ for, otherwise, the node u would belong to three distinct
+weakly normal cliques in F UC, namely Q, Q and Qi, with Q; € S, contradicting
+Lemma 4.4. As a consequence, no node in L is adjacent to some node u € QN.Q
+and any edge wv € E with u€ QNQ also belongs to E*.
+
+Let v be any node in Ng(QMQ) \ (QUQ) and ua node in Ne(v) N(QNQ). It
+follows that uv € E+. Since Q is weakly normal in G, we have that v is complete
+to Q\Q in G. Moreover, by Lemma 4.5, v is also complete to Q\Q in Gt. Suppose
+now that 21,22 ¢ Q. It follows that vri,vz2 € E* and, since Q is weakly normal
+in Gt, that vyi,vy2 € Et. If x3 ¢ Q we have that v3 € Et and vy3 € ET.
+But then (v : y1,y2,y3) is a claw in G* contradicting Lemma 4.6. It follows that
+a3 belongs to QNQ and hence y3 ¢ L. Observe that, by Lemma 4.5, the edge
+x2y3 does not belong to £. If y3 ¢ Q then the non-adjacent nodes x2, y3 € Na(Q)
+have the common neighbor a3 € Q, contradicting the hypothesis that Q is weakly
+normal in G. It follows that y3 belongs to Q and hence is adjacent to u. Moreover,
+since Q is weakly normal in G (Claim (i)), the nodes v,y3 € Ng(u) must be
+adjacent. But then (v : y1,y2, ys) is a claw in G* contradicting Lemma 4.6.
+
+So we can assume, without loss of generality, that a1 and x2 belong to QN Q
+and hence yi,y2 ¢ L. Observe that, by Lemma 4.5, the edges yirv2 and yix3
+do not belong to E and, consequently, y; does not belong to Q. It follows that
+x3 € Q for, otherwise, the non-adjacent nodes #3, y1 € Na(Q) would have the
+common neighbor #1 in Q, contradicting the hypothesis that Q is weakly normal
+in G. But then also y3 does not belong to L. Consequently, every node y € Q\ Q
+must be adjacent in G to y1, y2 and y3 since Q is weakly normal in G. But then
+(y : y1,y2,y3) is a claw in G, a contradiction. We can conclude that Q is a S-
+articulation clique and the lemma follows. i
+
+Lemma 4.9 Let {1, 2,73} be a net triangle in a regular connected component
+of Gt. Then there exists a S-articulation clique Q € S containing {a1, 22,23}.
+
+Proof. Let (21, 22,23 : y1,y2,y3) be a net in GT and let Q’ be a maximal clique
+in G* containing {a1,22,a3}. If two nodes in {y1,y2,y3}, say yr and yo, had
+a common neighbor u € Q’ we would have the claw (u : #3,y1,y2) in Gt, a
+contradiction. It follows that yi, y2,y3 are mutually Q’-distant in Gt and hence
+Q’ is normal in G*. Moreover, by hypothesis, Q’does not contain irregular nodes.
+If Q’ is also a maximal clique in G then, by Lemma 4.8, Q = Q’ is a S-articulation
+clique and we are done. Hence we can assume that Q’ is not a maximal clique in G
+and that no S-articulation clique in G contains {#1, x2, x3}. Let Q be a maximal
+clique in Gs containing Q’ \ L and observe that Q is a clique in G and contains
+{x1, 22,23}. In fact, v1, 22,73 ¢ L since they are not simplicial in G*. Moreover,
+Q is not maximal in G (otherwise Q = Q’ and Q’ would be maximal in G). Let Q
+be a maximal clique in G containing Q (observe that Q \ Q 4 0). By assumption
+
+
+12 Paolo Nobili, Antonio Sassano
+
+Q is not a S-articulation clique. Let F be the set of edges uv with u € Q and
+v €Q\Q. For each node v € Q\ Q at least one edge wv € F belongs to E \ E*,
+otherwise v would belong to Q. If some edge tiv € F belonged to E* then the
+three nodes u, &% and v would violate Lemma 4.5. As a consequence the set F is
+contained in E \ E* and hence each edge uv € F (and each node u € Q) belongs
+to some S-articulation clique.
+
+Assume that there exists some node u € Q belonging to two S-articulation cliques
+Qi and Q2. By assumption Q Z Q1, so let v be some node in Q\ Qi. Observe that
+v belongs to Ng(Q1 1 Q2). If v does not belong to Q2, we have Ng(Q1NQ2) Z
+(Q1UQz2), contradicting the assumption that both Qi and Q2 belong to S. Hence,
+we have v € Qz. But then the nodes u,v € Q2 are distinguished by Q1 and
+uv ¢ E*, a contradiction.
+
+It follows that each node u € Q belongs to exactly one S-articulation clique, say
+Q(u). Moreover, since each edge uz with z € Q\ Q belongs to F we have Q\ Q C
+Q(u). Since no S-articulation clique contains Q and each node in Q belongs to some
+S-articulation clique, we have that there exist at least two different S-articulation
+cliques Q1, Q2 containing nodes of Q. Moreover, since Q \ Q is contained both in
+Qi and in Qo, we have Q C Qi U Qz for, otherwise, Ne(Qi 1 Q2) Z (Qi U Q2),
+contradicting the assumption that both Qi and Q2 belong to S. Since no S-
+articulation clique contains {x1, 72,73} we can assume, without loss of generality,
+Q(a1) = Q(x2) = Qi and Q(x3) = Qe. If yi belongs to L then there exists a
+S-articulation clique Qo € S containing x1 and not containing x2 ¢ N*(yi). But
+then Qo distinguishes x; and «2 in Q; and x22 ¢ E*, a contradiction. It follows
+that y: does not belong to L and the edge x1y1 belongs to Es. Consequently, by
+Lemma 4.5, the edges x2y1 and x3y1 do not belong to L. It follows that yi ¢ Qi
+and the nodes y1, x73 € Ng(Q1) are non-adjacent and have the common neighbor
+x1 € Q1 in G, contradicting the assumption that Q1 is weakly normal in G. The
+lemma follows. Oo
+
+Lemma 4.10 Let Q be a S-articulation clique in G and let K € K be a spike of
+Q. If there exists a node y which is neither complete nor anti-complete to K in
+G* then any edge uv € E withu€ K andv ¢ Q belongs to Et.
+
+Proof. Assume, by contradiction, that there exists an edge uv € E \ E* with
+uéK and v ¢ Q. It follows that there exists a S-articulation clique Q 4 Q such
+that u,v € Q and hence KNQ # 0. By Lemma 4.2 we have K C Q and hence
+K CQNQ. Since y is not complete nor anti-complete to K, we have y ¢ QUQ
+and y € Nc(QNQ). This contradicts the assumption that both Q and Q are
+S-articulation cliques. The lemma follows. oO
+
+Lemma 4.11 Let Q be a S-articulation clique in G and let K € K be a spike of
+Q with the property that every net triangle T in Gt with TOK <0 is contained
+in K. Let U1 and Us be disjoint sets in Nea(Q) with U1 anti-complete to Uz in
+Gt. IfU, = N*(O1) NK and Uz = N*(U2)NK are both non-empty and disjoint
+then there exists a rigid edge with one end-node in U, and the other in U2.
+
+Proof. Let qx be the lifting node corresponding to kK. Observe that, since K is
+a spike in G, the graph Gr[K] is connected. Let P = (x0,21,...,@p) be the
+shortest path in Gr[K] connecting a node in U; to a node in U2 (see figure 6). By
+
+
+
+Weighted stable set problem in claw-free graphs 13
+
+minimality of P, each node xp, € P withh € {1,...,p—1} belongs to K \ (Ui UU2).
+By hypothesis there exist nodes wo € U1 AN* (a0) and wp41 € U2n N* (ap) with
+wo and wp+41 non-adjacent in G*. For each h € {1,...,p} there exists some node
+wn € Q adjacent to x,_1 and xp, in G (xp_12p is rigid in G). Since wo € Ui
+is adjacent to U; C K and anti-complete to U2 C K we have that wo is neither
+complete nor anti-complete to K in Gt and, by Lemma 4.10, each edge in E
+with one end-node in K and the other not in Q belongs to E*. It follows that
+whith, Whtn—1 € E* forh€ {1,...,p}.
+
+Since P is a shortest path in Gr{K], we have that any edge xpn_1%~41 with 1 >1
+is soft in G and hence Ng(wn) AP = N*(wn) AP = {xn-1, en}. It follows that
+we have wy, # we, for h # k. Moreover, we have wo # w1 (since w1 is adjacent
+to a1 ¢ U; in G*, while N*(wo) OK C Uj). Analogously, wp41 4 wp. Since Q is
+weakly normal in G, the nodes wn, wn41 € Na(Q) (h € {1,...,p — 1}) with the
+common neighbor x, € K are adjacent in G. Moreover, since wn th, Wa+10h € E*
+we have, by Lemma 4.5, w,wn41 € Et. In addition, wo, w1 with common neighbor
+Xo and Wp41, Wp with common neighbor «py are also adjacent in G*. We claim that
+P = (wo, wi,--., Wp, Wp41) is an induced path in Gt. In fact, let w,w, € Et (0 <
+h<k<p+l1) be the edge which maximizes k — h and assume, by contradiction,
+k—h > 1. Since wowp+1 ¢ E*, we have that either h > 0 or k < p+1. By
+symmetry we assume, without loss of generality, h > 0. The node wp is adjacent
+in G* to xp;, wp_1 and wx. By definition of h,k, we have wp_1 wr ¢ Et. Moreover,
+whith ¢ E* and wrap, ¢ E* (since k —h > 1). But then (wp : tp, Wr—1, Wk)
+is a claw in G*, contradicting Lemma 4.6. It follows that P is an induced path in
+G*. Moreover, we have p = 1 since, otherwise, (wi, w2, 21 : Wo, w3,qdK) would be
+a net in G* and the net triangle T = {w1,w2,21} with TA K 40 andT Z K
+would provide a contradiction. But then the rigid edge xo71 has one end-node in
+U, and the other in U2 and the lemma follows. oO
+
+Fig. 6: Proof of Lemma 4.11 (case p = 3), in red the rigid
+edges
+
+Proof of Lemma 4.7
+
+
+14 Paolo Nobili, Antonio Sassano
+
+Let C be a regular connected component of Gt and assume, by contradiction, that
+C contains some net. By Lemma 4.9 there exists a spike K of a S-articulation clique
+Q in G containing a net triangle in C.
+
+Claim (i). Any edge wy € E withu€ K andv ¢ Q also belongs to E*.
+
+Proof. Since K contains a net triangle, there exists a node y which is neither
+complete nor anti-complete to K in Gt and hence, by Lemma 4.10, the claim
+follows.
+
+End of Claim (i).
+
+Let K = Q\K and let K+ = K U{qx} be the clique obtained from K by adding
+the associated lifting node qx. The clique K* is a maximal clique in C containing
+a net triangle. Hence, by (i) of Lemma 3.1, K* is normal in G* and, since C is
+regular, by (ii) of Lemma 3.1 K* is weakly normal in Gt.
+
+Claim (ii). A net triangle T in G* with TO K #0 is contained in K.
+
+Proof. Suppose, conversely, that there exists a net triangle T in Gt and nodes
+u€TOK and v € T\ K. But then, by Lemma 4.9, T is contained in some
+S-articulation clique Q € S different from Q. We have that the nodes u,v € Q are
+distinguished by Q and the edge uv contradicts Claim (i). The claim follows.
+End of Claim (ii).
+
+Fig. 7: Proof of Lemma 4.7 after Claim (ii), the edges in red
+are rigid
+
+Let {u1, u2,u3} be a stable set of Gt in Nt(K*) (it exists since K* is normal in
+G*) and let U; = N*(ui) AK = Ne(ui) NK (4 = 1,2,3). We have that Ui, U2, U3
+are non-empty and disjoint (since K+ is weakly normal in G+). Letting 01 = {ui}
+and Uz = {uz} we have, by Lemma 4.11, that there exists in G (and in GT) a
+rigid edge gig2 with q: € U1 and q2 € U2. Analogously, there exists a rigid edge
+koq3 with kg € U2 and g3 € U3 (possibly k2 = gz). It follows that there exists
+some node wi2 ¢ Q adjacent to qi and q2 (both in G and in G*, by Claim (i)).
+Since K* is weakly normal in Gt, the nodes ui, wi2 € N*(K*) with the common
+neighbor qi € K* are adjacent in G*. Analogously, the nodes u2, wi2 € N+(K*)
+
+
+Weighted stable set problem in claw-free graphs 15
+
+with the common neighbor q2 € KT are also adjacent. If wi2 were adjacent to 3
+or to ug in G* then (wig : ui, U2, 93) or (wiz : U1, U2, U3) would be a claw in G*,
+contradicting Lemma 4.6. It follows that wi2q3 ¢ E* and wi2u3 ¢ E+ (and hence,
+y Claim (i), wi2qg3 ¢ E). However, since k2q3 is a rigid edge in G, there exists
+some node w23 ¢ @ adjacent to k2 and q3 (both in G and in G*, by Claim (i)),
+with w23 4 wiz. Again, since Kt is weakly normal in Gt, the node w23 is adjacent
+to both uz and u3 in Gt. Moreover, w23 is non-adjacent to qi (both in G and in
+Gt, by Claim (i)) and to ui in Gr (see figure 7). Assume that wi2w23 ¢ Et.
+Hence w23q2 ¢ E* for, otherwise, (q2 : M1, W12, U2, W23,¢q3) would be a 5-wheel in
+C, contradicting the assumption that C is a regular connected component of Gt.
+But then (wis, q2,u2 : U1,¢K,W23) is a net in GT and T = {wi2, q2, U2} is a net
+triangle in G* with TO K £40 and T Z K, contradicting Claim (ii).
+
+Hence, we have wi2we3 € E*. It follows that we3q2 € E* for, otherwise, (wiz:
+u1, W23, g2) would be a claw in G*. But then (wi2, 2, W23 : U1, 9K, U3) is a net in
+Gt and T = {wi2, q2, w23} is a net triangle in Gt with TAK #A™MandTZ kK,
+again contradicting Claim (ii). The lemma follows. Oo
+
+n [3] Faenza, Oriolo and Stauffer introduce the concept of hyper-line strip. A
+hyper-line strip (H,A) is characterized by an induced subgraph H of G and a
+family A of disjoint non-empty cliques contained in V(H) with 1 < |A| < 2
+(eatremities). For each extremity A € A the set AU(N(A)\V(H)) is an articulation
+clique. Moreover, the core C(H,.A) of the hyper-line strip, consisting of the nodes
+in V(#) that do not belong to the extremities, is anticomplete to V\V (HZ). Faenza,
+Oriolo and Stauffer show that each irregular node of a claw-free graph G(V, E)
+with a(G) > 4 (hub of a 5-wheel by [4] Corollary 1.2) is contained in a hyper-line
+strip. More precisely, the arguments used in the proof of Lemma 6.4 ((3]) and in
+particular the proof of Claim 20 imply the following theorem:
+
+Theorem 4.2 Let G(V,E) be a connected claw-free graph with a(G) > 4. Then
+there exists a family H of node-disjoint hyper-line strips with the property that
+every 5-wheel W = (w:v1,...,05) of G is contained in some H € H with a(H) <
+3. Moreover, V(H) C N[W], and each node z € V(H) is not simplicial. a
+
+Fig. 8: Rigid structure and ungluing of graph containing a hyperline strip
+
+
+16 Paolo Nobili, Antonio Sassano
+
+In the graph shown in figure 8, S = {1,5,7,11}. The cliques in CU F are C, = {1,2},
+Cs = {3,5,6}, Cs = {5,8,9}, Cr = {4,6, 7}, Cr = {7,8, 10}, Cur = {9, 10, 11}, F = {2,3, 4}.
+The family S contains the cliques C,, C11 and F. The edges marked in red are rigid while the
+edges in solid black are soft but are not contained in any clique of S and hence belong to Es.
+The dotted edges belong to E\ Es since they are soft, belong to some clique K of S and connect
+different components of Gg[K]. Finally, the subgraph induced by H = {3,4,5,6,7,8,9, 10} is
+a hyperline strip (H,.A) containing the irregular nodes 6 and 8 and the corresponding family
+A is composed by Ai = {3,4} and Ag = {9, 10}.
+
+Building upon this crucial result we can prove the following:
+
+Lemma 4.12 If W = (w: v1,...,U5) is a 5-wheel in G then there exists a strip
+C of Gs with the property that W C V(C) and a(C) < 3.
+
+Proof. By Theorem 4.2 we have that there exists a hyper-line strip (H,A) with
+W C V(H) and a(H) < 3. Since G is connected and a(G) > 4, at least one of the
+extremities, say Ai € A has Ng(A1)\V(H) 4 9. Let Ag be the other extremity of
+H (if it exists) and denote by K; the articulation clique (and hence S-articulation
+by Lemma 4.1) Ai U (N@(Ai) \ V(A)) (i = 1,2). Denote by R = {u1,...,u5} the
+rim of W.
+
+Observe first that the node w does not belong to a S-articulation clique (each clique
+containing w is not weakly normal) and hence the edges wup, belong to E* for each
+vn € R. Moreover, each edge vpn 41 (sums taken modulo 5) also belongs to ET,
+otherwise (w : vn, Un+1,Un+3) would be a claw in G*, contradicting Lemma 4.6.
+It follows that the 5-wheel W is an induced subgraph of G*.
+
+Let uv € E be an edge with u € V(H) and v ¢ V(H). We have u € A; and
+v € Ng(Ai) \ V(A) (for some i € {1,2}). Without loss of generality, assume
+u € Aj. Suppose that wv is rigid. It follows that there exists a node z € Ng(K1)
+adjacent to both u and v. Since the node z does not belong to Ki, it belongs to
+V(H) \ Ai. Moreover, since the core of H is anticomplete to V \ V(H), we have
+z € Ag. But then v € Na(Az2) \ V(A) belongs to K2 and K2 distinguishes wu and
+v, a contradiction. Hence each edge uv with u € V(H) and v ¢ V(H) is a soft
+edge in G. It follows that the connected component C' of Gg containing W is a
+subgraph of H.
+
+We claim that C contains at most two spikes. Suppose, conversely that there exists
+three spikes in C’ and let yi, y2, y3 be the corresponding lifting nodes in G*. Since
+C is a subgraph of H we have C C Nc(W) and hence yi, y2, y3 are at most at
+distance three from w. Moreover, since w is not contained in any S-articulation
+clique, y1, y2,y3 ¢ N*(w). If yx € N*(R), we have that y; is adjacent to exactly
+two consecutive nodes in R. If, on the other hand, yi ¢ N*(R), we have that yi
+is adjacent to some node u; which is adjacent to exactly two consecutive nodes in
+R and non-adjacent to w.
+
+If y1, 42, y3 are adjacent to R in G* then two of them have a common neighbor
+in R, contradicting Lemma 4.3. If two of the lifting nodes, say y1, y2, belong to
+Nt(R), we have that one of them (say y1) and ug have a common neighbor in
+R, say vn. But then (vn : y1,u3,w) is a claw in G*, a contradiction. If only one
+lifting node, say y1 is adjacent to R, we have that either yi, u3 or y1, U2 or U2, U3
+have a common neighbor in R. In the first two cases, as above, there is a claw
+in GT, a contradiction. If u2,u3 have a common neighbor in R, say vp, assume,
+
+
+Weighted stable set problem in claw-free graphs 17
+
+without loss of generality, NT (u2) OR = {vn—1, un} and N*(u3)NR = {vn, vngi}-
+But then uz,ug are adjacent in G* (otherwise (vp; : u2,u3,w) is a claw in Gt)
+and, consequently, (u2 : vn—1,y1,U3) is a claw in G*, a contradiction. Finally,
+if yi, y2, yz are non-adjacent to R in GT then two of the nodes ui, u2,u3 have a
+common neighbor in R and, as above, there is a claw in GT, a contradiction. This
+implies that C is a connected component of Gs containing at most two spikes and
+hence it is a strip. The lemma follows. i
+
+Proof of Theorem 4.1
+
+Let C be any connected component of G's. Since G is a connected claw-free
+graph with a(G) > 4, by [4] (Corollary 1.2) every irregular node of G is the hub of
+a 5-wheel. Hence, if C’ is an irregular connected component the theorem follows by
+Lemma 4.12. Hence suppose that C is a regular connected component of G's. Let
+Ct be the connected component of G* obtained by adding to C the associated
+lifting nodes, S* the extension of S in G* and let sé =C*tnS*. By Lemma 4.6
+and Lemma 4.7, Gt(C™] is a {claw, net}-free graph. If |S¢| > 4 we have ((10]
+(Theorem 2.1)) that each node s € S4 defines at most two wings in G* with
+respect to St. If, on the other hand, |so| < 3 then trivially each node s € sé
+defines at most two distinct wings. Hence, we can conclude that any node s € Se
+defines at most two wings in GT. Let H(S3,T) be the graph where xy is an edge
+in T if and only if the nodes x,y € se are the extrema of a wing W(a,y) in Gt.
+Observe that each node s € se has degree either 0, 1 or 2 in H.
+
+Claim (i). The graph H is connected.
+
+Proof. Assume conversely that there exist at least two connected components of H.
+Since C* is a connected component in G*, each pair of nodes in se is connected
+by a (shortest) path in GT. Let P = (a, 71,...,2n,y) (h > 1) be a shortest path
+connecting two different components of H. Let C; and C2 be the components
+of H connected by P, with « € C, and y € C2. Observe that, since the nodes
+in L are simplicial in G*, the internal nodes of P belong to V. Moreover, by
+minimality of P, zi ¢ S& (i =1,...,h) and h > 2, otherwise W(x,y) would be
+a wing, contradicting the assumption that « and y do not belong to the same
+connected component of H. If h > 3, since z2 is not superfree with respect to ST
+we have that there exists at least one node t € S* adjacent to z2 and different
+from « and y; we have t € St. Ift ¢ Cy then tz; ¢ E* and the path (s, 21, 22, t)
+would contradict the minimality of P. It follows that t belongs to C; and hence
+t,y are in different connected components of H. But then (t, z2, z3,...,2n,y) isa
+path connecting two nodes in different components of H which is shorter than P,
+a contradiction. Consequently, we have h = 2. If z: is a bound node then there
+exists a node t € S* adjacent to z1 and different from z and y. The node t belongs
+to sé and, by claw-freeness, is also adjacent to z2. It follows that both W(z,t)
+and W(y,t) are wings and hence t belongs to both C, and C2, a contradiction.
+Hence z; and, by symmetry, z2 are free nodes. But then x and y define a wing,
+again a contradiction.
+
+End of Claim (i).
+
+By what proved above H is either an isolated node or a path with at least one
+edge or a cycle. Observe that for each node u € L either u belongs to sé or the
+spike complete to u contains a node in S¢, so |C* NM L| < |SG|. Hence, if H is a
+singleton then C is a strip. Consequently, we can assume |S | = p> 2. In this case
+
+
+18 Paolo Nobili, Antonio Sassano
+
+there exists an ordering {s1, s2,...,8p} of S& such that each s; (2 < i < p—1)
+defines wings with s;-1; and with s;41. If H is a cycle, then also W(s1, sp) is a
+wing and every node in sé defines wings with exactly two other distinct nodes in
+sé.
+
+Claim (ii). If there exists a node u € C* NL such that the unique node ti €
+st AN*[u] defines two wings in G* then Ct NL = {u}
+
+Proof. Let K = N*(u) € K be the spike complete to u in G* and Q € S the clique
+of G containing K. Observe that the node u either belongs to S¢ and coincides with
+a or is free and adjacent to i € K. Let W(t1, ui) and W(t2, it) be the wings defined
+by win Gt. Let U; be the set containing ¢; and the free nodes in W(t;, a) AN* (ti)
+(i = 1,2). Since the nodes in U; are non-adjacent to @ in Gt, we have U; NK =0
+(i = 1,2). Moreover, U1 N Uz = 0. Let U; = N+ (Oi) A K (i = 1,2). Observe that
+we have U; = W(ti,u) MN K (i = 1,2) and hence Ui, U2 are non-empty. If there
+exists a node x € U; N U2, then it belongs to W(t1, u) M W(t, u) and hence is a
+free node in N* (i). In this case, there exist free nodes x1 € N*(t1) A N*(a) and
+x2 € N*(t2) 1 N*(ax). Moreover, we have r122 € Et (otherwise (a : t, 21,22)
+is a claw in Gt, contradicting Lemma 4.6). But then (1,%2,a : t1,t2,t) isa
+net in G*[C], contradicting Lemma 4.7. It follows that U; and U2 are disjoint.
+Moreover K does not intersect any net triangle (again by Lemma 4.7). Hence, by
+Lemma 4.11, we have that there exists in G (and in G*) a rigid edge vive with
+v1 € U; and v2 € U2. Moreover, if v1 is bound let 01 = ti, otherwise let 0; be a
+free node in N*(t1) N*(v1). Analogously, define 2. Observe that 0; belongs to
+U; (¢ = 1,2) and hence it is neither complete nor anti-complete to K in Gt. Let
+w ¢ Q be a node adjacent both to v1 and to v2 in G (it exists since v1v2 is a rigid
+edge). Since 01 is neither complete nor anti-complete to K in G*, by Lemma 4.10
+we have wv1, wv2 € E*. Moreover, wt1 € Et (otherwise (v1 : u,t1,w) is a claw
+in G*, contradicting Lemma 4.6). Analogously, wi2 € Et.
+
+If 01 A ti we have that (v1,01,w : u,ti, 02) is a net in Gt{ct), contradicting
+Lemma 4.7. It follows that 0; = ti and, analogously, t2 = t2. Hence we have
+that W(t1,t2) is a wing in G? with respect to $Z (it contains w) and each pair
+in {t1,t2,u} defines a wing. Consequently S& = {t1,t2,u} and H is a triangle.
+Suppose now that |C*+ 9 L| > 2 and let y 4 u be a node in Ct ML. The node y
+is non-adjacent to u. Consequently, since NT [yl ia) So is non-empty and t1,t2 ¢ L
+(they are adjacent to the spike K and qx = u), we have that y is adjacent either to
+ti or t2. Without loss of generality we can assume yt € E* and hence yt ¢ Et.
+The node y is non-adjacent to v1 (since v1 € K’) and non-adjacent to w (otherwise
+(w : y,v1,t2) would be a claw in G*). But then (t1,v1,w : y,u,t2) is a net in
+G*(C*], contradicting Lemma 4.7. Hence, Ct ML = {u} and the claim follows.
+
+End of Claim (ii).
+
+By the above claim, if |C* 9 L| > 2 then the nodes in C* 9 L can only belong
+to N*[si] UN*[sp]. Since si (sp) either belongs to L or is adjacent in GT to at
+most one node in L we have |Ct M L| < 2 and hence C is a strip. The theorem
+follows. a
+
+
+Weighted stable set problem in claw-free graphs 19
+
+5 Finding a canonical stable set and S-articulation cliques in O(|V|?)
+
+In what follows, we assume that the graph G(V, E) is represented by an array of |V |
+records, each one associated with a node and containing the list of its neighbors
+(sorted with respect to some given linear ordering on V) and the information
+pertaining to that node. In particular, each node v € V is labeled as stable, bound
+or free with respect to a canonical stable set S. In addition, the list $(v) (containing
+at most two elements) is available for each node v € V \ S. Observe that the above
+mentioned data structures can all be constructed in O(|E]) time.
+
+The algorithms described in this section exploits a suitable list B of O(|V|) cliques
+in G. Such a list contains the cliques in the S-cover C, the F-cliques in F, the free
+similarity classes in {F'(s) : s € S} and a subset of the non-empty intersections of
+pairs of such cliques. With each clique Q € B is uniquely associated an identifier
+id[Q] and pertaining information (with size O(1)) like, for example, whether Q
+is the intersection of two different cliques (and which are the identifiers of such
+cliques), whether Q is an F-clique (and, if trivial, which are the identifiers of the
+two similarity classes it intersects), whether Q is a free similarity class F(s) (and
+which is the stable node s) or whether Q belongs to C (and which is the unique
+stable node in Q). The cliques in B are accessible through their identifiers and
+other special collection of cliques are represented as lists of identifiers of cliques in
+B and called families. Moreover, for each s € S, the identifier of F(s) is added to
+the information pertaining to the node s.
+
+We start by assessing the complexity of constructing a canonical stable set S, the
+S-cover C, the list of F-cliques F and the list of cliques {F(s) : s € S}.
+
+Theorem 5.1 A canonical stable set S of a claw-free graph G(V,E) can be ob-
+tained in time O(|E|).
+
+Proof. Let T be any maximal stable set of G. Let P = (a,s,y) be an induced P3
+in G with s € T and x,y € F(s). As customary we say that P is augmenting
+with respect to T and call the set T = T \ {s}U {x,y}, which is a stable set, the
+augmentation of T with respect to P.
+
+Claim (i). T is a mazximal stable set, the set of free nodes with respect to T is
+strictly contained in the set of free nodes with respect to T and every P3 which is
+augmenting with respect to T is also augmenting with respect to T.
+
+Proof. Suppose first that T is not maximal and hence there exists some node
+v € V\T which is non-adjacent to every node in T. In particular, v ¢ N(x)UN(y).
+Moreover, since T' is maximal, we have v € N(s). But then (s : x, y,v) is a claw
+in G, a contradiction. Suppose now that there exists some node z which is free
+with respect to T but is not free with respect to T’. Since s is bound with respect
+to T and any other node in T also belongs to T we have z ¢ T; moreover, since
+T is maximal, z is not superfree and hence is bound with respect to T. The node
+z is adjacent to s (otherwise it would be bound also with respect to T) and to
+some other stable node § € TNT. Moreover, since z is free with respect to T and
+is adjacent to § € T, it is non-adjacent to x and to y. But then (s:a,y,z) isa
+claw in G, a contradiction. Suppose now that there exists a P3 (p,t,q) which is
+augmenting with respect to T but not with respect to T. Since the set of free nodes
+with respect to T is contained in the set of free nodes with respect to T, we have
+
+
+20 Paolo Nobili, Antonio Sassano
+
+that p and q are also free with respect to T. Hence, we have t € T \ T = {2,y}
+(otherwise (p, t,q) would be augmenting with respect to T). Moreover, p and q are
+non-adjacent to any node in TT (otherwise they would not be free with respect
+to T) and hence are both adjacent to s (otherwise they would not be free with
+respect to T). Hence, without loss of generality, we can assume t = x and so y is
+non-adjacent to both p and q (otherwise they would not be free with respect to
+
+T). But then (s: p,q,y) is a claw in G, a contradiction.
+End of Claim (i).
+
+Let So = {81,82,...,q} be a maximal stable set of G(V, £) and F(So) the as-
+sociated set of free nodes. Observe that the data structures representing the sets
+So and F(s) for all s € So can be constructed in O(|E|) time. We now prove
+that a canonical stable set Sz can be obtained from So by iteratively looking for
+a possible augmentation of a current stable set S;-; and producing the updated
+stable set S; (i initially set to 1), in overall time O(|E|). At stage i of the proce-
+dure we examine the node s; € So. Let Gi(Vi, Ei) be the subgraph of G induced
+by N{[s;]. Observe that, by Lemma 4 in [7], |Vi] = O(,/|Ei|). We scan the set
+V; M F(Si-1) looking for a pair of non-adjacent nodes. This can be done in time
+O(|E;|). If we find an augmenting P3 («:, i, yi), we update the stable set $;-1 by
+letting Si := Si-1 \ {si} U {xi, yi}, otherwise we set Sj; := Si—1. Moreover, the
+set F(S;) of the free nodes with respect to Si is obtained by updating F(S;-1).
+In particular, if S; = Sj-1 trivially we have F(S;) = F(Si-1), otherwise, by
+Claim (i), we only have to remove from F(S;—1) the nodes which are not free
+with respect to S;. Observe that the nodes to be removed are 2;, yi (which be-
+come stable) and any node which becomes bound (either adjacent to both x; and
+yi or adjacent to x; or y; and not to s;). It follows that F(S;) can be obtained
+from F(S;—-1) by checking the nodes in the neighborhood of x; and y; in time
+O(|N(ai) UN(yi)|). Observe that Claim (i) ensures that no new augmenting P3 is
+produced by the operation. This implies that we have only to check the nodes in
+So as stable nodes in augmenting P3. Let A C {1,2,...,q} be the set of indices of
+the iterations that produced an augmentation. It follows that the overall complex-
+ity of the procedure is O((4_, |Ei] + Vie4(|N (xi) U N(yi)|). By claw-freeness,
+each edge in E belongs to at most two sets E; and hence >>7_, |Ei| < 2|E|.
+Moreover, the neighborhood of the nodes x; and y;, removed from the set of free
+nodes at stage i, will not be scanned again in the subsequent stages and hence
+Miea(lN (wi) U N(wi)|) < Vyey |N(v)| = 2|Z|. Consequently, the overall com-
+plexity of the procedure is O(|E]|). Oo
+
+Theorem 5.2 Let G(V, E) be a claw-free graph and S a canonical stable set of G.
+Then the S-cover C, the list of F-cliques F and the list of cliques {F(s) : s € S}
+can be constructed and added to B in O(|V|?) time.
+
+Proof. We first show that the S-cover C can be constructed in O(|V |?) time. In fact,
+for each s € S, we try to bi-color the complement Gs of G[N(s)] by performing
+a breadth first search in O(|N(s)|?) time. The node s is strongly regular if and
+only if we get a partition (A,B,I) of N(s) (A,B or I possibly empty) where
+Gs [A U B) is connected and bipartite and the nodes in J are isolated in Gs. If
+the partition exists and A,B are non-empty, the maximal cliques C.,Cs in the
+unique pair covering N[s] are induced by AUJU {s} and BUT U {3}; if all the
+nodes in N(s) are isolated in G, then the unique maximal clique covering N{s] is
+
+
+Weighted stable set problem in claw-free graphs 21
+
+C, = Cs = IU {s} (see also [3] Lemma 3.3). Moreover, since each node v € V
+is adjacent to at most two nodes in S, we have )) <5 |N(s)|? < 4|V|? and hence
+the cliques in C can be constructed and added to B in O(|V|?) time. As to F and
+{F(s) : s € S}, observe that in O(|E]) time we can construct the set F'(S') of free
+nodes with respect to S and partition F'(S) into the free similarity classes F(s)
+(s € S) that are added to B. In turn, this partition allows us to construct in O(|E|)
+time the free dissimilarity graph of G and hence, in O(|V|) time, the list of the
+connected components of such a graph which are cliques in G. Finally, again in
+O(|V|?) time, we can remove from such a list the cliques which are not maximal
+in G thus obtaining F that is added to B. ia
+
+Observe that, while constructing the lists C, F and {F(s) : s € S}, we can record
+for each clique C in C the unique stable node in C and, for each F-clique, we
+can easily check whether it is trivial or not and, in the first case, record the two
+similarity classes it intersects.
+
+We are now ready to describe the algorithm for constructing the family of S-
+articulation cliques S. To this purpose, we will make use of the following data
+structures:
+
+- B: the list of cliques in C, F, {F'(s) : s € S} and the cliques QiNQ; (if non-empty)
+with either Qi,Q; € C UF or Qi € F and Q; € {F(s): 5 € S};
+
+- By (w€ V): the family (list of identifiers) of cliques in B containing u;
+
+- Cy (u€V): the family of cliques in C containing u;
+
+- Fu (u€ V): the family of F-cliques in F containing u;
+
+- Ds (s € S): the family of non-trivial F-cliques in F intersecting the similarity
+class F(s);
+
+- Dst (s,t € S$): the family of trivial F-cliques in F intersecting the similarity
+classes F'(s) and F(t);
+
+- ofid[Qi], id[Q5]] (Qi,Q; € CUFU {F(s) : s € S}): id[QiN Qy] if QiNQ; € B
+and nil otherwise;
+
+- niu, id[Q]] (u € V and Q € B): the number of nodes in N(u) 1 Q.
+
+In what follows, to simplify the notation, we will write Q instead of id[Q]; for
+example we will say that o[Qi,Qj] is some clique Q to mean that the Q is the
+clique whose identifier is o[id[Q,], id[Q;]] and we will write n[u, Q] for n[u, id[Q]].
+Moreover, we will say that some clique Q belongs to a family A if the identifier of
+Q belongs to A.
+
+Theorem 5.3 The above data structures have the following properties:
+
+(i) for each u EV, |Ful <1;
+
+(ii) for each node u € S, the cliques in the family Cy belong to {Cu,Cu} and the
+family Fy is empty;
+
+(iii) for each bound node u € V with S(u) = {s,t}, the cliques in the family Cu
+belong to {Cs,Cs, Cz, Cr} and the family Fy, is empty;
+
+(iv) for each free node u with S(u) = {s}, the cliques in the family Cy belong to
+{Cs,Cs};
+
+(v) the families {Cu :u€ V}, {Fu : ue V}, {Ds : 8 © S} and {Dez : s,t € S}
+can be constructed in overall time O(|\V|?);
+
+(vi) for each u € V, the family By contains at most 10 sets;
+
+
+22 Paolo Nobili, Antonio Sassano
+
+(vii) the list B contains O(|V|) sets and can be constructed in O(|V|?) time along
+with the matrix o[-,:] and the families B, for each u € V;
+(viii) the matria n{-,-] can be computed in O(|V|?) time.
+
+Proof. Properties (i)—(iv) easily follow from the definition. Property (v) can be
+proved by the following procedure: first, initialize empty lists of identifiers; scan
+each clique Q € C C B and, for each u € Q, add the identifier of Q to Cu; scan each
+clique Q € F C B and, for each u € Q, add the identifier of Q to Fy; scan each
+clique Q € F C Band, if Q isa trivial F-clique in W(s, t), add the identifier of Q to
+Dest otherwise, mark in O(|V]) time all the nodes in S and, for each u € Q with the
+property that $(u) is marked, add the identifier of Q to Dg(,) and unmark S(u).
+Since each node in V belongs to at most four cliques in C UF (properties (i)—(iv))
+the claim follows. To prove property (vi) we consider three cases. If u € S then, by
+property (ii), u is contained in at most two cliques of C, in their intersection and
+in no clique of F; hence |B,,| < 3. If u is a bound node then, by property (iti), u is
+contained in at most four cliques in C, in their intersections and in no clique of F;
+in this case |B,| < 10. Finally, if wu is a free node then, by properties (i) and (iv), u
+is contained in at most two cliques of C, one clique of F and their intersections. In
+addition u is contained in the unique similarity class F(S(u)) and hence in at most
+one intersection of a clique in F with a free similarity class; in this case |B,| < 7.
+Hence, for each u € V, |Bu| < 10 as claimed.
+
+To prove property (vii) we first show that B, o[-,:] and B, (for all uw € V) can be
+constructed in O(|V|?) time. To this purpose, we first initialize B := CUFU{F(s) :
+s € S}; by Theorem 5.2 this can be done in O(|V|?) time. Then, for each clique
+Q€CUFU{F(s) : s € S} we set o[Q,Q] := Q and, for each pair of distinct
+cliques Qi,Q; € CUFU {F(s) : s € S}, we initialize a set Qij := 0 and let
+0[Qi, Qj] := Qij. Finally, for all u € V, we initialize B, as an empty list. The
+above initialization requires O(|V|?) time. Subsequently, we scan the nodes u € V
+and do the following: for each pair of distinct cliques Qi,Qj; € Cu U Fu we add u
+to Qij = 0[Qi, Qj] and add Qi; to the family B,. Moreover, if Fy, is non-empty,
+we let Q; be the unique (by property (i)) clique in Fu, Qj = F(S(u)) and again
+add u to Qi; = o[Qi, Qj] and Qi; to By. Since by property (vi) there are at most
+10 cliques to be added to B,, the complete scan of V can be performed in O(|V|)
+time. Finally, B can be completed as follows: for each pair Qi, Q; of distinct cliques
+inCUFU{F(s):s € S}, if Qij = o[Qi, Qj] is non-empty add it to B, otherwise
+set o[Qi, Qj] := nil. This can be done in O(|V|*) time. To prove that the list B
+contains O(|V|) non-empty sets it is sufficient to observe that it is composed by
+the cliques in U,ey By and that each B, contains a constant number of cliques.
+
+To prove property (viii) we first let n[u,Q] := 0 for each node u € V and each
+clique Q € B. Then, for each edge uv € FE, each pair of cliques Qu € By and
+Qv € By (there are O(1) such cliques by property (vi)), increment both n[u, Qo]
+and n[v, Qu]. Evidently the computation produces the desired matrix and can be
+carried out in overall time O(|V|*). a
+
+In figure 8, B = {{1,2}, {2,3, 4}, {9, 10, 11}, {2}}, A = id[{1,2}], B = id[{2,3,4}], C =
+id{{9, 10, 11}], D = éd[{2}], Bo = {A, B, D}, of A, B] = D, oA, C] = nil, n[6, B] = 2, n[5, B] =
+1.
+
+Theorem 5.4 The family S can be constructed in O(|V|?) time.
+
+
+Weighted stable set problem in claw-free graphs 23
+
+Proof. The overall procedure for constructing S can be described as follows: We
+first let S := CUF C B, then remove from S the cliques which are not weakly
+normal. Hence S will contain the set of weakly normal cliques in C U F. Finally,
+we let S := S and, for each pair Q1,Q2 € S such that N(Qi1NQ2) Z Qi UQz, we
+remove @ and Q2 from S. We now show that the above operations can be carried
+out in overall O(|V|?) time.
+
+Claim (i). For any s € S, if there exists a non-trivial F-clique Q € Ds and two
+Q-close nodes x,y with a common neighbor z € F(s)NQ then x and y belong to
+N(s) and are Q-close for every F-clique Q € Ds.
+
+Proof. Assume first that x is complete to Q \ F(s), let Z € QM F(s) be a node
+not adjacent to x (it exists since Q is maximal) and let t,q be distinct stable
+nodes in N(Q \ F(s)). Let 21 € QM F(t) and z2 € QN F(q) be nodes adjacent
+to a. It follows that x is adjacent to t (otherwise (z1 : x,Z,t) would be a claw)
+and to q (otherwise (z2 : z,%,q) would be a claw). But then (a : t,q,z) is a claw
+in G, a contradiction. Hence, x and analogously y are not complete to Q \ F(s).
+Consequently, there exist Z,y € Q \ F(s) with «% ¢ E and yy ¢ E. Moreover, by
+claw-freeness, we have xy, yZ € E. Finally, rs € E (otherwise (z : x, Z,s) would be
+a claw) and, analogously, ys € E. Let 2 be a node in QNF(s). Since S$ is canonical,
+zz € E. Moreover, since Z ¢ Q, we have 2%,zy ¢ E, otherwise Z would belong
+to the connected component of the free dissimilarity graph containing % and y,
+a contradiction. In addition, 2 does not belong to Q for, otherwise, it should be
+free and, being adjacent to y, it would belong to Q, a contradiction. Analogously,
+y ¢ Q. Finally, we have 2z € E (otherwise (z : 2,Z,2) would be a claw) and
+yz € E (otherwise (z : y, y, 2) would be a claw). But then x and y are Q-close and
+the claim follows.
+
+End of Claim (i).
+
+Claim (ii). For any pair s,t € S, a trivial F-clique Q € Dst is not weakly normal
+if and only if there exists a bound node x € W(s,t) adjacent to some node z €
+QNF(s) and to some node v € QN F(t) and a node y € (N(s)UN(t))\Q adjacent
+either to z or tov and non-adjacent to x.
+
+Fig. 9: A trivial F-clique {u,v,¢q,z} which is not
+weakly normal
+
+
+24 Paolo Nobili, Antonio Sassano
+
+Proof. If there exist a bound node « € W(s,t) and a node y € (N(s) U N(t)) \Q
+both adjacent to a node z € Q with zy ¢ E then Q is trivially not weakly normal.
+
+On the other hand, if Q is not weakly normal then there exist two nodes x and
+y not in Q having a common neighbor z in Q. Without loss of generality, assume
+z € QNF(s). Moreover, if both x and y are non-adjacent to some node v € QNF(t),
+then (z: v,z,y) is a claw, a contradiction. Hence, without loss of generality, we can
+assume that x is adjacent to some node v € QN F(t). If z is free then either xz or
+xv is an edge in the free dissimilarity graph and x belongs to Q, a contradiction.
+It follows that « is bound and, since it is adjacent to z € F(s) and v € F(t),
+by claw-freeness it must be adjacent to both s and t and so belongs to W(s,t).
+Now, if y is non-adjacent to v then it must be adjacent to s (otherwise (z : s, y,v)
+would be a claw in G). On the other hand, if y is adjacent to v the same argument
+used for x shows that y is a bound node in W(s,t). In both cases y belongs to
+(N(s)U N(t)) \ Q and the claim follows.
+
+End of Claim (ii).
+
+Claim (iii). For any pair s,t € S, if |Dse| > 2 then a trivial F-clique Q € Dez is
+not weakly normal if and only if there exists a bound node x € W(s,t) adjacent to
+both QN F(s) and QM F(t).
+
+Proof. Assume first that Q is not weakly normal. By Claim (ii) there exists a
+bound node x € W(s,t) adjacent to some node z € QN F(s) and to some node
+v €QN F(t), so the claim follows.
+
+Suppose now that there exists a bound node x € W(s,t) adjacent to a node
+z€ QNF(s) and a node v € QN F(t). Let Q’ 4 Q be another clique of Ds: and
+let y € Q’ be a node non-adjacent to x. Such a node exists because, otherwise, Q’
+would not be maximal. Without loss of generality, assume y € Q’/N F(s). Since y
+and z belong to the clique F'(s) (S is canonical) we have that z € Q is a common
+neighbor of x,y € N(Q), hence Q is not weakly normal and the claim follows.
+End of Claim (iii).
+
+Claim (iv). If Q belongs to S and u,v € N(Q) are non-adjacent then u and v are
+Q-close if and only if nu, Q] + n[v,Q] > |Q|.
+
+Proof. By claw-freeness two non-adjacent nodes u,v € N(Q) with a common
+neighbor in Q have the property that N({u,v}) D Q and hence n[u, Q] + n[v, Q] >
+|Q|. The converse is obvious.
+
+End of Claim (iv).
+
+Now, we can remove from S the F-cliques which are not weakly normal. First,
+for each trivial F-clique Q, letting F(s) and F(t) be the free similarity classes
+intersecting Q, we check whether |Ds:| > 2 and in this case remove Q if there
+exists a bound node in W(s,t) adjacent to both Qs = QNF(s) and Q: = QNF(t).
+Observe that the cliques Q; and Q; belong to B and can be retrieved as Qs :=
+o[Q, F(s)] and Q: := o[Q, F(t)] so, for any bound node « € W(s,t), the check can
+be carried out by verifying whether n[{z, Qs] 4 0 and n{x, Q:] 4 0. Hence, the above
+eliminations can be carried out in overall time O(|V|?) and, by Claim (iii), we have
+that the resulting S still contains all the weakly normal cliques in CU F. Now each
+trivial F-clique Q in S which is not weakly normal is contained in some wing W(s,t)
+satisfying |Ds:| = 1. By Claim (ii) Q is characterized by the property that there
+exists a bound node a € W(s,t) and a non-adjacent node y € (N(s)U N(t))\Q
+
+
+Weighted stable set problem in claw-free graphs 25
+
+with a common neighbor in Q. Hence, to remove such cliques we do the following.
+For each bound node z, let W(s,t) be the wing containing it; we check whether
+|Dst| = 1. If this is the case, we let Q be the unique clique in Ds; and mark all the
+nodes in |V|. Then, we unmark each node v € Q U N{z]. Finally, for every node
+y € (N(s)UN(t)), we check whether y is marked (i.e. y € (N(s)UN(t))\(QUN[z]))
+and n[x,Q] + n{y,Q] > |Q|. By Claim (iv), the non-adjacent nodes x,y € N(Q)
+have a common neighbor in Q if and only if n[x,Q] + n[y,Q] > |Q|, so by such
+a procedure we can find (and remove from S) all the remaining trivial F-cliques
+which are not weakly normal. The above computations can be carried out in overall
+
+time O(|V|?).
+
+Now, we can remove from § the non-trivial F-cliques which are not weakly normal.
+Each one of them, say Q, contains some node z which is the common neighbor of
+two non-adjacent nodes x and y in N(Q). By Claim (i), x, y and z are adjacent to
+a common stable node s € S. Hence, to remove all the non-trivial F-cliques which
+are not weakly normal we do the following. For each s € S' we select one F-clique
+Q € Ds (if any) and, for each pair x,y of non-adjacent nodes in N(s) \ Q, we
+check whether n[x,Q] + n[y, Q] > |Q|. If such a pair exists, by Claim (i), we have
+that each F-clique in Dg is not weakly normal and can be removed. Otherwise, no
+F-clique in Ds contains, in F'(s), the common neighbor of two non-adjacent nodes.
+Since, by claw-freeness, each pair x,y € V is adjacent to at most two nodes in S,
+we have that the above computations can be carried out in overall time O(|V|?).
+Moreover, the above procedure removes all the non-trivial F-cliques which are not
+weakly normal.
+
+Now, to remove the cliques in SMC which are not weakly normal we check, for
+each pair of non-adjacent nodes x,y € V, whether they have a common neighbor
+in some clique Q € SNC not containing « and y and, in such a case, remove
+Q from S. To assess the complexity of this operation suppose first that both a
+and y are bound and belong, respectively, to the possibly coincident wings W(s, t)
+and W(u,v). Assume that there exists a clique Q € SMC containing a common
+neighbor g of « and y. Let z be the node in QMS and observe that z is in
+{s,t, u,v}, otherwise (q : 2, y,z) would be a claw in G. It follows that Q belongs
+to one of the pairs (Cs,Cs), (Cr, Ct), (Cu, Cu), (Cv, Cv) and hence for each pair
+x,y of non-adjacent bound nodes we have to test at most eight cliques. Similar
+arguments show that if x and/or y is free or bound then we have to test less than
+eight cliques. Moreover, by Claim (iv), we can verify that the non-adjacent nodes
+x,y have a common neighbor in Q by checking whether n[x,Q] + n[y,Q] > |Q|-
+This implies that the overall check can be performed in O(|V|?) time.
+
+Now, to conclude the construction of S, we first mark with two labels (blue and
+red) the cliques in B belonging to S. This can be done in O(|V]|) time. Then, for
+each node u € V and each clique B € B with B = Q1NQ2 and Q1, Q2 marked in
+red (i.e. Q1,Q2 € S), we remove the blue label from both Qi and Qe if n[u, B] > 1
+and Qi,Q2 ¢ Bu. Since, by Theorem 5.3, B contains O(|V|) elements and each
+family B, O(1) elements, the overall check can be performed in O(|V|?) time.
+Finally, in O(|V|) time, we construct S by adding all the cliques in {8} marked
+in blue. The theorem follows. ia
+
+
+26 Paolo Nobili, Antonio Sassano
+
+6 Ungluing of S-articulation cliques in O(|V|?)
+
+In this section we show that all the edges satisfying the conditions of Definition 4.4
+can be removed in O(|V|?) time. To this purpose we show that, for all cliques
+Q € S, we can determine the connected components of the rigid structure Gr[Q]
+and, according to Definition 4.4, remove any edge wv such that u and v belong to
+different components of Gp[Q] in overall time O(|V|?).
+
+Theorem 6.1 The ungluing Gs of G with respect to S can be constructed in
+O(|V|?) time.
+
+Proof. By Theorem 5.4 the family S of S-articulation cliques can be constructed in
+O(|V|*) time and contains O(|V|) elements. Then, in overall time O(|V|*), we can
+construct the list {S, : u € V}, where S, is the family of cliques in S containing
+the node u. Observe that, by Theorem 4.4, |Su| < 2.
+
+We now compute the connected components of the rigid structure of the S-
+articulation cliques. To this purpose, for each node u € V and each clique Q € S
+which does not contain u, let Root{u,Q] be a node in QM N(u) which does not
+belong to any clique Q’ € S \ {Q} (if any). Moreover, for each clique Q € S, let
+Ge(Q, Eq) be the spanning subgraph of G[Q] with xy € Eg if and only if either
+both x and y belong to QM Q; for some Qi € S \ {Q} or Q is the unique clique in
+S containing both a and y and there exists a node wu satisfying « = Root[u,Q] and
+y € N(u). Observe that each edge xy € Eg is rigid. In fact, if « and y belong to
+QNQ; for some Q; € S\ {Q} then, by Theorem 4.4, x and y are not distinguished
+by any clique in S and, since Q 4 Qi, N(x) NM N(y) is not a clique in G. If, on
+the other hand, Q is the unique clique in S containing both x and y then x and y
+are not distinguished by any clique in S. Moreover, there exists some node u ¢ Q
+satisfying x = Root{u,Q] € N(u) and y € N(u); hence N(«)MN(y) is not a clique
+in G. In both cases zy is a rigid edge. We have the following:
+
+Claim (i). The matrix Root{-,-] and the graphs Ga (Q € S) can be computed in
+O(|V|?) time.
+
+Proof. For each Q € S we initialize the graph Gg by letting Eg := 0 and, for
+each node u € V, we let Root[u,Q] := nil. Now, for each edge uv € E we do the
+following. If S, contains a single clique Q” not in S, then if Root[u,Q”’] = nil,
+we let Root|u, Q”] := v, otherwise we add to Eg the edge (v, Root[u, Q”]); note
+that, in this case, Root[u,Q”] = v’ for some uv’ # uv and hence v is different
+from Root[u, Q”]. Analogously, if S, contains a single clique Q“ not in S, then we
+procede as above by interchanging the roles of u and v. Finally, if both S, and S,
+contain the same pair of cliques Qi and Q2 then we add the edge uv both to Ea,
+and to Eg,. Evidently the above procedure produces the matrix Root|-,-] and the
+graphs Gg for Q € S in overall time O(|V|*).
+
+End of Claim (i).
+
+Claim (ii). For each Q € S§ the connected components of GR[Q] coincide with the
+connected components of Ga.
+
+Proof. Since all the edges in Eg are rigid, we have that any connected component
+of Gg is contained in some connected component of G'g[Q]. We have to show that.
+also the reverse is true. Hence suppose, by contradiction, that there exists a rigid
+
+
+Weighted stable set problem in claw-free graphs 27
+
+edge xy € E with x and y in different connected components of Gg. Observe that,
+for any clique Qi € S\ {Q}, an edge wv with u € QNQi and v € Q\Q; is not rigid
+(u and v are distinguished by Q;) and an edge uv with both u and v in QNQ;
+belongs to Eg, so we must have that Q is the unique clique in S containing both
+x and y. Let u be a node in N(Q) adjacent to both x and y (it exists since xy is
+rigid). Let z = Root{u, Q]. If z = x or z = y then, by construction, zy belongs to
+Eg, a contradiction. It follows that z # x,y and, by construction, the edges xz
+and yz belong to Eg. But then x and y belong to the same connected component
+of Gg, contradicting the assumption.
+
+End of Claim (ii).
+
+Observe that the overall complexity of constructing Gg for each Q € S is O(|V|*)
+(recall that any edge belongs to at most two S-articulation cliques). Hence the
+ungluing Gs of G along with the corresponding partitions of the cliques Q € S
+can be produced in O(|V|*) time and the theorem follows. Oo
+
+7 Conclusion
+
+The results of the last section show that a generalization of the ungluing operation
+defined by Faenza, Oriolo and Stauffer [3] applies directly to the family of S-
+articulation cliques in a claw-free graph G(V, £) and produces a collection of {claw,
+net}-free strips and strips with stability number at most three. By Theorems 5.4
+and 6.1 the overall complexity of finding the S-articulation cliques and ungluing
+the graph G is O(|V|?). Moreover, the results of [10] and [11] allow us to solve
+the MWSS problem in O(|V(C)|,/|E(C)|) time in each {claw, net}-free strip C
+with a(C) > 4 and in O(|E(C)|log|V(C)|) time in each strip C with a(C) < 3.
+It follows that the overall time complexity of solving the MWSS problem in all
+the strips is O(|V|? log |V|). In [3] (Theorem 2.10) Faenza, Oriolo and Stauffer
+have shown that the MWSS problem on a graph G(V, E) that is the composition
+of some set of strips can be solved in O(|V|?log|V|) plus the time of solving
+the same problem in all the strips. Consequently, the results of our three papers
+show that the MWSS problem on claw-free graphs can be solved in O(|V|? log |V|)
+time. This improves with respect to the O(|V|(|V|log|V| + |Z|)) bound achieved
+in [3] and is aligned to the complexity of the best known algorithm which solves
+the MWSS problem in line graphs [5]. As Manfred Padberg conjectured in 1983,
+solving the maximum weight stable set problem on claw-free graphs is not harder
+than solving the matching problem.
+
+References
+
+1. Ball, M.O., Derigs, U.: An analysis of alternative strategies for implementing matching
+algorithms. Networks 13(4), 517-549 (1983)
+
+2. Chudnovsky, M., Seymour, P.D.: The structure of claw-free graphs. In: Surveys in Com-
+binatorics, pp. 153-171 (2005)
+
+3. Faenza, Y., Oriolo, G., Stauffer, G.: Solving the weighted stable set problem in claw-free
+graphs via decomposition. J. ACM 61(4), 20 (2014)
+
+4. Fouquet, J.: A strengthening of Ben Rebea’s lemma. J. Comb. Theory, Ser. B 59(1), 35-40
+(1993)
+
+5. Gabow, H.N.: Data structures for weighted matching and nearest common ancestors with
+linking. In: SODA, pp. 434-443 (1990)
+
+
+28
+
+Paolo Nobili, Antonio Sassano
+
+10.
+
+11.
+
+12.
+
+Galil, Z., Micali, S., Gabow, H.N.: Priority queues with variable priority and an O(EV log
+V) algorithm for finding a maximal weighted matching in general graphs. In: 23rd Annual
+Symposium on Foundations of Computer Science, Chicago, Illinois, USA, 3-5 November
+1982, pp. 255-261 (1982)
+
+Kloks, T., Kratsch, D., Miiller, H.: Finding and counting small induced subgraphs effi-
+ciently. Inf. Process. Lett. 74(3-4), 115-121 (2000)
+
+. Lovasz, L., Plummer, M.: Matching theory. Annals of Discrete Mathematics, 29. North-
+
+Holland Mathematics Studies, 121. Amsterdam etc.: North-Holland. XXXIII, 544 p. (1986)
+Minty, G.J.: On maximal independent sets of vertices in claw-free graphs. J. Comb. Theory,
+Ser. B 28, 284-304 (1980)
+
+Nobili, P., Sassano, A.: An O(n,/m) algorithm for the weighted stable set problem in
+{Claw, Net}-free graphs with a(G) > 4. Discret. Optim. 19(C), 63-78 (2016). DOT
+10.1016/j.disopt.2016.01.002. URL http: //dx.doi.org/10.1016/j.disopt .2016.01.002
+Nobili, P., Sassano, A.: An O(mlogn) algorithm for the weighted stable set problem in
+claw-free graphs with a(G) < 3. Mathematical Programming 164(1), 157-165 (2017).
+DOI 10.1007/s10107-016- 1080-9. URL https: //doi.org/10.1007/s10107-016- 1080-9
+Schrijver, A.: Combinatorial Optimization: Polyhedra and Efficiency. Springer-Verlag,
+Berlin Hiedelberg (2003)

@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  ocr-app:
+    build: .
+    volumes:
+      - ./uploads:/app/uploads
+      - ./results:/app/results
+    command: python app.py --mode text
+
+volumes:
+  uploads:
+  results:
